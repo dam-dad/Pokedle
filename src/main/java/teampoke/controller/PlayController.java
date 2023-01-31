@@ -5,49 +5,40 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.util.Duration;
-import teampoke.app.App;
 
-public class RootController implements Initializable {
+public class PlayController implements Initializable {
 
-	// controller
-
-	PlayController playController = new PlayController();
-
+	// model
+	
+	private StringProperty pokemonProperty = new SimpleStringProperty();
+	
 	// view
+	@FXML
+	private MediaView mediaView;
+	
+	@FXML
+    private Button sendPokemonButton;
 
+	@FXML
+    private TextField pokemonTextField;
+	
 	@FXML
 	private StackPane view;
 
-	@FXML
-	private MediaView mediaView;
-
-	@FXML
-	private ImageView logo;
-
-	@FXML
-	private Label startLabel;
-
-	@FXML
-	private BorderPane borderPane;
-
-	public RootController() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
+	public PlayController() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 		loader.setController(this);
 		try {
 			loader.load();
@@ -58,7 +49,6 @@ public class RootController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		// para el video de fondo
 		Media media = new Media(Paths.get("media/fondo.mp4").toUri().toString());
 		MediaPlayer player = new MediaPlayer(media);
@@ -73,42 +63,23 @@ public class RootController implements Initializable {
 		mediaView.fitWidthProperty().bind(view.widthProperty());
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
-
-		// animación del texto
-		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), startLabel);
-		fadeTransition.setFromValue(1.0);
-		fadeTransition.setToValue(0.0);
-		fadeTransition.setCycleCount(Animation.INDEFINITE);
-		fadeTransition.play();
+		
+		// bindings
+		pokemonProperty.bind(pokemonTextField.textProperty());
 
 	}
-
+	
 	public StackPane getView() {
 		return view;
-	}
-
-	@FXML
-	void onMousePressed(MouseEvent event) {
-		cambiarEscena();
-	}
-
-	public void onEnterPressed() {
-		cambiarEscena();
-	}
-
-	public void cambiarEscena() {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
-
-		loader.setController(playController);
-		Scene scene = new Scene(playController.getView());
-		App.primaryStage.setScene(scene);
-
 	}
 	
 	@FXML
     void onSendPokemon(ActionEvent event) {
-		System.out.println("probó");
+		System.out.println(pokemonProperty.get());
     }
+	
+	public Button getSendPokemonButton() {
+		return sendPokemonButton;
+	}
 
 }

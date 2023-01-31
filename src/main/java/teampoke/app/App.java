@@ -3,6 +3,7 @@ package teampoke.app;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import teampoke.controller.RootController;
@@ -19,8 +20,9 @@ public class App extends Application {
 		App.primaryStage = primaryStage;
 		Scene scene = new Scene(rootController.getView());
 		
-		primaryStage.setTitle("Pokedle");
+		primaryStage.setTitle("Pokédle");
 		primaryStage.setScene(scene);
+		primaryStage.getIcons().add(new Image("/images/pokedle_icon_32px.png"));
 		primaryStage.show();
 		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

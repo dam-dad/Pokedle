@@ -12,12 +12,12 @@
    <children>
       <BorderPane fx:id="borderPane" StackPane.alignment="TOP_CENTER">
          <center>
-            <Label fx:id="startLabel" text="PRESIONA ENTER PARA EMPEZAR" BorderPane.alignment="CENTER" />
+            <Label id="start-label" fx:id="startLabel" stylesheets="@../css/main.css" text="PRESIONA ENTER PARA EMPEZAR" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_CENTER">
                <image>
-                  <Image url="@../images/pokedle_redimensionada.png" />
+                  <Image url="@../images/pokedle.png" />
                </image>
                <BorderPane.margin>
                   <Insets />
