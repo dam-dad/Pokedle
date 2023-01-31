@@ -5,15 +5,20 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 public class RootController implements Initializable {
 
@@ -29,6 +34,12 @@ public class RootController implements Initializable {
 
     @FXML
     private ImageView logo;
+    
+    @FXML
+    private Label startLabel;
+    
+    @FXML
+    private BorderPane borderPane;
 
 	public RootController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
@@ -58,7 +69,14 @@ public class RootController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 		
+		// animación del texto
+		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), startLabel);
+		fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setCycleCount(Animation.INDEFINITE);
+        fadeTransition.play();
 		
+			
 	}
 
 	public StackPane getView() {
@@ -68,6 +86,10 @@ public class RootController implements Initializable {
 	@FXML
 	void onMousePressed(MouseEvent event) {
 		System.out.println("click");
+	}
+	
+	public void onEnterPressed() {
+		System.out.println("enter");
 	}
 
 }

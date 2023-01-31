@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,17 +10,23 @@
 
 <StackPane fx:id="view" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#onMousePressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane fx:id="borderPane" StackPane.alignment="TOP_CENTER">
          <center>
-            <Label text="Presiona Enter para empezar" BorderPane.alignment="CENTER" />
+            <Label fx:id="startLabel" text="PRESIONA ENTER PARA EMPEZAR" BorderPane.alignment="CENTER" />
          </center>
          <top>
-            <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_CENTER">
                <image>
-                  <Image url="@../images/pokedle.png" />
+                  <Image url="@../images/pokedle_redimensionada.png" />
                </image>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </ImageView>
          </top>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
       </BorderPane>
       <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" />
    </children>
