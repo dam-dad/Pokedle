@@ -60,7 +60,8 @@ public class RootController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		// para el video de fondo
-		Media media = new Media(Paths.get("media/fondo.mp4").toUri().toString());
+//		Media media = new Media(Paths.get("media/fondo.mp4").toUri().toString());
+		Media media = new Media(getClass().getResource("/media/fondo.mp4").toString());
 		MediaPlayer player = new MediaPlayer(media);
 		mediaView.setMediaPlayer(player);
 		mediaView.toBack(); // para que el video esté en el fondo
