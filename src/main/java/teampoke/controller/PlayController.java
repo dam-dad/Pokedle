@@ -76,6 +76,7 @@ public class PlayController implements Initializable {
 	@FXML
     void onSendPokemon(ActionEvent event) {
 		System.out.println(pokemonProperty.get());
+		pokemonTextField.setText(null);
     }
 	
 	public Button getSendPokemonButton() {

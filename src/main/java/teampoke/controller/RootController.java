@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -105,10 +104,5 @@ public class RootController implements Initializable {
 		App.primaryStage.setScene(scene);
 
 	}
-	
-	@FXML
-    void onSendPokemon(ActionEvent event) {
-		System.out.println("probó");
-    }
 
 }
