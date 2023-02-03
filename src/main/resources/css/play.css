@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#labels-panel{
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-text-fill: black;
+	-fx-font-size: 6pt;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+}
+.list-view{
+	-fx-background-color: transparent;
+}

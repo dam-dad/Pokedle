@@ -2,7 +2,6 @@ package teampoke.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
@@ -59,7 +58,6 @@ public class RootController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		// para el video de fondo
-//		Media media = new Media(Paths.get("media/fondo.mp4").toUri().toString());
 		Media media = new Media(getClass().getResource("/media/fondo.mp4").toString());
 		MediaPlayer player = new MediaPlayer(media);
 		mediaView.setMediaPlayer(player);
@@ -103,7 +101,6 @@ public class RootController implements Initializable {
 		loader.setController(playController);
 		Scene scene = new Scene(playController.getView());
 		App.primaryStage.setScene(scene);
-
 	}
 
 }

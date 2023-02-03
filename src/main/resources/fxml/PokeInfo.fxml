@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="PokeInfoView" alignment="CENTER" spacing="5.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="pokemonImage" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tipoPrimarioLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Tipo primario" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="tipoSecundarioLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Tipo secundario" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="pesoLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Peso" />
+      <Label fx:id="alturaLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Altura" />
+      <Label fx:id="numPokedexLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Número en Pokédex" wrapText="true" />
+      <Label fx:id="evolucionaLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Evoluciona" />
+      <Label fx:id="preevolucionLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Tiene preevolución" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="maneraEvolucionarLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Manera de evolucionar" textAlignment="CENTER" wrapText="true" />
+   </children>
+</HBox>
