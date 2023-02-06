@@ -113,25 +113,25 @@ public class PlayController implements Initializable {
 		
 		if (pokemonEnviadoInfo.getNombrePokemon().trim().toUpperCase().equals("PIKACHU")) {
 			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/pikachu120px.png").toString()));
-			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: green;");
-			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: green;");
+			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: #568d39;");
 
 		} else {
 			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/charmander120px.png").toString()));
-			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: red;");
-			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: red;");
+			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: #d54424;");
 		}
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 		

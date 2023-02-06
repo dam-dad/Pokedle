@@ -72,6 +72,7 @@ public class RootController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
+
 		// animación del texto
 		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), startLabel);
 		fadeTransition.setFromValue(1.0);

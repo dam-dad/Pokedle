@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="PokeInfoView" alignment="CENTER" spacing="5.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="PokeInfoView" alignment="CENTER" spacing="5.0" stylesheets="@../css/pokeinfo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="pokemonImage" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="tipoPrimarioLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Tipo primario" textAlignment="CENTER" wrapText="true" />
