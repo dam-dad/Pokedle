@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -103,7 +104,7 @@ public class PlayController implements Initializable {
 		pokemonEnviadoInfo.setTipoPrimPokemon("Eléctrico");
 		pokemonEnviadoInfo.setTipoSecPokemon("No tiene");
 		pokemonEnviadoInfo.setPesoPokemon("10 kg");
-		pokemonEnviadoInfo.setAlturaPokemon("0,4 metros");
+		pokemonEnviadoInfo.setAlturaPokemon("0,4 m");
 		pokemonEnviadoInfo.setNumPokemon("25");
 		pokemonEnviadoInfo.setEvoPokemon("Sí");
 		pokemonEnviadoInfo.setPreevoPokemon("Sí");
@@ -111,27 +112,32 @@ public class PlayController implements Initializable {
 		
 		pokemonTextField.setText(null);
 		
+//		Image flechaArriba = new Image(getClass().getResourceAsStream("/images/flecha_arriba.png"));
+//		Image flechaAbajo = new Image(getClass().getResourceAsStream("/images/flecha_abajo.png"));
+//		ImageView flechaArriba = new ImageView(new Image(getClass().getResourceAsStream("/images/flecha_arriba.png")));
+
+		
 		if (pokemonEnviadoInfo.getNombrePokemon().trim().toUpperCase().equals("PIKACHU")) {
-			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/pikachu120px.png").toString()));
-			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: #568d39;");
-			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: #568d39;");
+			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/pikachu_sprite.png").toString()));
+			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
 
 		} else {
-			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/charmander120px.png").toString()));
-			pokemonEnviadoInfo.getTipoPrimarioLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getTipoSecundarioLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getPesoLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getAlturaLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getNumPokedexLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getEvolucionaLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getPreevolucionLabel().setStyle("-fx-background-color: #d54424;");
-			pokemonEnviadoInfo.getManeraEvolucionarLabel().setStyle("-fx-background-color: #d54424;");
+			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/charmander_sprite.png").toString()));
+			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("mal");
+			pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("mal");
+			pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("mal-arriba");
+			pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("mal-arriba");;
+			pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("mal-abajo");
+			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("mal");
+			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("mal");
+			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
 		}
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 		
