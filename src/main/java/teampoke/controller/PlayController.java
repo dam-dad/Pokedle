@@ -112,11 +112,6 @@ public class PlayController implements Initializable {
 		
 		pokemonTextField.setText(null);
 		
-//		Image flechaArriba = new Image(getClass().getResourceAsStream("/images/flecha_arriba.png"));
-//		Image flechaAbajo = new Image(getClass().getResourceAsStream("/images/flecha_abajo.png"));
-//		ImageView flechaArriba = new ImageView(new Image(getClass().getResourceAsStream("/images/flecha_arriba.png")));
-
-		
 		if (pokemonEnviadoInfo.getNombrePokemon().trim().toUpperCase().equals("PIKACHU")) {
 			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/pikachu_sprite.png").toString()));
 			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("bien");
