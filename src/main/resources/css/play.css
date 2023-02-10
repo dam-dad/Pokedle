@@ -14,3 +14,19 @@
 .list-view{
 	-fx-background-color: transparent;
 }
+
+.text-field{
+	-fx-background-radius: 15;
+	-fx-font-family: 'Press Start 2P', cursive;
+}
+
+.button{
+	-fx-background-image: url("../images/send.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+	-fx-background-color: transparent;
+}
+
+.button:focused {
+    -fx-background-image: url("../images/send_selected.png");
+}
