@@ -21,12 +21,12 @@
 }
 
 .button{
-	-fx-background-image: url("../images/send.png");
+	-fx-background-image: url("../images/arrow_45px.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: center center;
 	-fx-background-color: transparent;
 }
 
 .button:focused {
-    -fx-background-image: url("../images/send_selected.png");
+    -fx-background-image: url("../images/arrow_focused_45px.png");
 }
