@@ -28,7 +28,13 @@
                <children>
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
-                        <TextField fx:id="pokemonTextField" maxWidth="500.0" promptText="Introduce el nombre de un Pokémon" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pokemonTextField" maxWidth="300.0" prefHeight="50.0" promptText="Introduce el nombre de un Pokémon" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></TextField>
                         <Button fx:id="sendPokemonButton" contentDisplay="GRAPHIC_ONLY" defaultButton="true" mnemonicParsing="false" onAction="#onSendPokemon" prefHeight="50.0" prefWidth="50.0" text="Probar" />
                      </children>
                      <padding>
