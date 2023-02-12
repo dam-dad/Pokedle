@@ -2,7 +2,10 @@ package teampoke.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.textfield.TextFields;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -32,6 +35,7 @@ public class PlayController implements Initializable {
 
 	private StringProperty pokemonEnviado = new SimpleStringProperty();
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private ArrayList<String> nombres = new ArrayList<>();
 
 	// view
 	
@@ -88,6 +92,13 @@ public class PlayController implements Initializable {
 		sendPokemonButton.disableProperty().bind(pokemonTextField.textProperty().isEmpty());
 
 		pokemonListView.itemsProperty().bind(pokemonInfoList);
+		
+		nombres.add("Pikachu");
+		nombres.add("Charmander");
+		
+		TextFields.bindAutoCompletion(pokemonTextField, nombres);
+		
+		
 
 	}
 
