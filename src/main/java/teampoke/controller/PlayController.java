@@ -3,8 +3,12 @@ package teampoke.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.AutoCompletionBinding.ISuggestionRequest;
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.beans.property.ListProperty;
@@ -20,13 +24,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Callback;
 import teampoke.component.PokeInfoComponent;
 
 public class PlayController implements Initializable {
@@ -38,7 +42,7 @@ public class PlayController implements Initializable {
 	private ArrayList<String> nombres = new ArrayList<>();
 
 	// view
-	
+
 	@FXML
 	private MediaView mediaView;
 
@@ -50,9 +54,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private VBox pokeInfo;
-	
+
 	@FXML
-    private ListView<HBox> pokemonListView;
+	private ListView<HBox> pokemonListView;
 
 	@FXML
 	private StackPane view;
@@ -96,7 +100,19 @@ public class PlayController implements Initializable {
 		nombres.add("Pikachu");
 		nombres.add("Charmander");
 		
-		TextFields.bindAutoCompletion(pokemonTextField, nombres);
+//		TextFields.bindAutoCompletion(pokemonTextField, nombres);
+		TextFields.bindAutoCompletion(pokemonTextField, new Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>>(){
+
+			@Override
+			public Collection<String> call(ISuggestionRequest param) {
+				return nombres.stream()
+					.filter(n->n.toLowerCase().startsWith(param.getUserText().toLowerCase()))
+					.sorted()
+					.collect(Collectors.toList());
+				
+			}
+			
+		});
 		
 		
 
@@ -120,11 +136,12 @@ public class PlayController implements Initializable {
 		pokemonEnviadoInfo.setEvoPokemon("Sí");
 		pokemonEnviadoInfo.setPreevoPokemon("Sí");
 		pokemonEnviadoInfo.setFormaDeEvoPokemon("Piedra");
-		
+
 		pokemonTextField.setText(null);
-		
+
 		if (pokemonEnviadoInfo.getNombrePokemon().trim().toUpperCase().equals("PIKACHU")) {
-			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/pikachu_sprite.png").toString()));
+			pokemonEnviadoInfo.getPokemonImage()
+					.setImage(new Image(getClass().getResource("/images/pikachu_sprite.png").toString()));
 			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("bien");
@@ -135,18 +152,20 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
 
 		} else {
-			pokemonEnviadoInfo.getPokemonImage().setImage(new Image(getClass().getResource("/images/charmander_sprite.png").toString()));
+			pokemonEnviadoInfo.getPokemonImage()
+					.setImage(new Image(getClass().getResource("/images/charmander_sprite.png").toString()));
 			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("mal");
 			pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("mal");
 			pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("mal-arriba");
-			pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("mal-arriba");;
+			pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("mal-arriba");
+			;
 			pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("mal-abajo");
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("mal");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("mal");
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
 		}
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
-		
+
 	}
 
 }
