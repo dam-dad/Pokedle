@@ -103,12 +103,12 @@ public class RootController implements Initializable {
 	    mediaPlayer.setVolume(1.5);
 	    mediaPlayer.play();
 
-		closeButton.setOnAction(event -> {
-			Stage stage = (Stage) closeButton.getScene().getWindow();
-			stage.close();
-		});
+//		closeButton.setOnMouseClicked(event -> {
+//			Stage stage = (Stage) closeButton.getScene().getWindow();
+//			stage.close();
+//		});
 		
-		maxButton.setOnAction(event -> {
+		maxButton.setOnMouseClicked(event -> {
 			Stage stage = (Stage) maxButton.getScene().getWindow();
 		    if (stage.isMaximized()) {
 		        stage.setMaximized(false);
@@ -117,7 +117,7 @@ public class RootController implements Initializable {
 		    }
 		});
 		
-		minButton.setOnAction(event -> {
+		minButton.setOnMouseClicked(event -> {
 			Stage stage = (Stage) minButton.getScene().getWindow();
 			stage.setIconified(true);
 		});
@@ -126,6 +126,14 @@ public class RootController implements Initializable {
 
 	public StackPane getView() {
 		return view;
+	}
+	
+	@FXML
+	void onClose() {
+		closeButton.setOnAction(event -> {
+			Stage stage = (Stage) closeButton.getScene().getWindow();
+			stage.close();
+		});
 	}
 
 

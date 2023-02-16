@@ -26,21 +26,14 @@
 	
 	}
 	
-.close-button{
-	-fx-background-color: transparent;
-}
 
-.close-button:hover{
-	-fx-background-color: #F5F085;
-}
-
-.button{
+#send-pokemon-button{
 	-fx-background-image: url("../images/arrow_45px.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: center center;
 	-fx-background-color: transparent;
 }
 
-.button:focused {
+#pokemon-button:focused {
     -fx-background-image: url("../images/arrow_focused_45px.png");
 }

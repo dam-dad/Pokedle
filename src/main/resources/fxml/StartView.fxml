@@ -44,7 +44,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="closeButton" mnemonicParsing="false" stylesheets="@../css/main.css">
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" stylesheets="@../css/main.css">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
