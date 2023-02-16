@@ -25,6 +25,14 @@
 	-fx-background-image: url("../images/text_back.png");
 	
 	}
+	
+.close-button{
+	-fx-background-color: transparent;
+}
+
+.close-button:hover{
+	-fx-background-color: #F5F085;
+}
 
 .button{
 	-fx-background-image: url("../images/arrow_45px.png");

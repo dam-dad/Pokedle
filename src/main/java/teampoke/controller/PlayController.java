@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 import teampoke.component.PokeInfoComponent;
 
 public class PlayController implements Initializable {
@@ -34,6 +36,17 @@ public class PlayController implements Initializable {
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
 
 	// view
+	@FXML
+	private Button closeButton;
+
+	@FXML
+	private Button maxButton;
+
+	@FXML
+	private Button minButton;
+
+	@FXML
+	private ButtonBar toolBar;
 	
 	@FXML
 	private MediaView mediaView;
@@ -79,6 +92,13 @@ public class PlayController implements Initializable {
 		mediaView.fitWidthProperty().bind(view.widthProperty());
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
+		
+		// archivo de audio
+	    Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+	    MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+	    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+	    mediaPlayer.setVolume(1.5);
+	    mediaPlayer.play();
 
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
@@ -88,6 +108,25 @@ public class PlayController implements Initializable {
 		sendPokemonButton.disableProperty().bind(pokemonTextField.textProperty().isEmpty());
 
 		pokemonListView.itemsProperty().bind(pokemonInfoList);
+		
+		closeButton.setOnAction(event -> {
+			Stage stage = (Stage) closeButton.getScene().getWindow();
+			stage.close();
+		});
+		
+		maxButton.setOnAction(event -> {
+			Stage stage = (Stage) maxButton.getScene().getWindow();
+		    if (stage.isMaximized()) {
+		        stage.setMaximized(false);
+		    } else {
+		        stage.setMaximized(true);
+		    }
+		});
+		
+		minButton.setOnAction(event -> {
+			Stage stage = (Stage) minButton.getScene().getWindow();
+			stage.setIconified(true);
+		});
 
 	}
 
