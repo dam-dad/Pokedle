@@ -2,15 +2,16 @@ package teampoke.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.AutoCompletionBinding.ISuggestionRequest;
+
 import org.controlsfx.control.textfield.TextFields;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -39,7 +40,7 @@ public class PlayController implements Initializable {
 
 	private StringProperty pokemonEnviado = new SimpleStringProperty();
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
-	private ArrayList<String> nombres = new ArrayList<>();
+	private ListProperty<String> pokemonList = new SimpleListProperty<>(FXCollections.observableArrayList());
 
 	// view
 
@@ -91,31 +92,32 @@ public class PlayController implements Initializable {
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
 
+		pokemonList.add("Pikachu");
+		pokemonList.add("Charmander");
+		
 		// bindings
 		pokemonEnviado.bind(pokemonTextField.textProperty());
 		sendPokemonButton.disableProperty().bind(pokemonTextField.textProperty().isEmpty());
+		sendPokemonButton.disableProperty().bind(
+				Bindings.createBooleanBinding(() -> {
+					return (!pokemonList.contains(pokemonTextField.textProperty().get()));
+				},pokemonTextField.textProperty())
+				);
 
 		pokemonListView.itemsProperty().bind(pokemonInfoList);
 		
-		nombres.add("Pikachu");
-		nombres.add("Charmander");
-		
-//		TextFields.bindAutoCompletion(pokemonTextField, nombres);
 		TextFields.bindAutoCompletion(pokemonTextField, new Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>>(){
 
 			@Override
 			public Collection<String> call(ISuggestionRequest param) {
-				return nombres.stream()
+				return pokemonList.stream()
 					.filter(n->n.toLowerCase().startsWith(param.getUserText().toLowerCase()))
 					.sorted()
-					.collect(Collectors.toList());
-				
+					.collect(Collectors.toList());			
 			}
-			
 		});
 		
 		
-
 	}
 
 	public StackPane getView() {
