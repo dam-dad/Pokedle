@@ -29,7 +29,7 @@ public class App extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image("/images/pokedle_icon_32px.png"));
 		primaryStage.initStyle(StageStyle.UNDECORATED);
-		Image image = new Image("/images/pb.png"); 
+		Image image = new Image("/images/cursor.png"); 
 		scene.setCursor(new ImageCursor(image));
 		primaryStage.show();
 		

@@ -95,47 +95,24 @@ public class RootController implements Initializable {
 		fadeTransition.setToValue(0.0);
 		fadeTransition.setCycleCount(Animation.INDEFINITE);
 		fadeTransition.play();
-		
+
 		// archivo de audio
-	    Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
-	    MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
-	    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-	    mediaPlayer.setVolume(1.5);
-	    mediaPlayer.play();
+		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.setVolume(1.5);
+		mediaPlayer.play();
 
 //		closeButton.setOnMouseClicked(event -> {
 //			Stage stage = (Stage) closeButton.getScene().getWindow();
 //			stage.close();
 //		});
-		
-		maxButton.setOnMouseClicked(event -> {
-			Stage stage = (Stage) maxButton.getScene().getWindow();
-		    if (stage.isMaximized()) {
-		        stage.setMaximized(false);
-		    } else {
-		        stage.setMaximized(true);
-		    }
-		});
-		
-		minButton.setOnMouseClicked(event -> {
-			Stage stage = (Stage) minButton.getScene().getWindow();
-			stage.setIconified(true);
-		});
 
 	}
 
 	public StackPane getView() {
 		return view;
 	}
-	
-	@FXML
-	void onClose() {
-		closeButton.setOnAction(event -> {
-			Stage stage = (Stage) closeButton.getScene().getWindow();
-			stage.close();
-		});
-	}
-
 
 	@FXML
 	void onMousePressed(MouseEvent event) {
@@ -144,6 +121,28 @@ public class RootController implements Initializable {
 
 	public void onEnterPressed() {
 		cambiarEscena();
+	}
+
+	@FXML
+	void onClose(MouseEvent event) {
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		stage.close();
+	}
+
+	@FXML
+	void onMax(MouseEvent event) {
+		Stage stage = (Stage) maxButton.getScene().getWindow();
+		if (stage.isMaximized()) {
+			stage.setMaximized(false);
+		} else {
+			stage.setMaximized(true);
+		}
+	}
+
+	@FXML
+	void onMin(MouseEvent event) {
+		Stage stage = (Stage) minButton.getScene().getWindow();
+		stage.setIconified(true);
 	}
 
 	public void cambiarEscena() {
@@ -163,7 +162,7 @@ public class RootController implements Initializable {
 		App.primaryStage.setTitle("Pokédle");
 		App.primaryStage.setScene(scene);
 		App.primaryStage.getIcons().add(new Image("/images/pokedle_icon_32px.png"));
-		Image image = new Image("/images/pb.png");
+		Image image = new Image("/images/cursor.png");
 		scene.setCursor(new ImageCursor(image));
 
 		App.primaryStage.setScene(scene);

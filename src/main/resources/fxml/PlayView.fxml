@@ -32,8 +32,11 @@
                            </opaqueInsets></TextField>
                         <Button id="send-pokemon-button" fx:id="sendPokemonButton" contentDisplay="GRAPHIC_ONLY" defaultButton="true" mnemonicParsing="false" onAction="#onSendPokemon" prefHeight="50.0" prefWidth="50.0" styleClass="pokemon-button" stylesheets="@../css/play.css" text="Probar" />
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
                   <VBox fx:id="pokeInfo" alignment="CENTER" VBox.vgrow="ALWAYS">
@@ -65,7 +68,7 @@
                <children>
                   <ButtonBar fx:id="toolBar" prefHeight="46.0" prefWidth="1140.0">
                     <buttons>
-                        <Button fx:id="minButton" mnemonicParsing="false" stylesheets="@../css/main.css">
+                        <Button fx:id="minButton" mnemonicParsing="false" onMouseClicked="#onMin" stylesheets="@../css/main.css">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -78,7 +81,7 @@
                               <String fx:value="button" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="maxButton" mnemonicParsing="false" stylesheets="@../css/main.css">
+                        <Button fx:id="maxButton" mnemonicParsing="false" onMouseClicked="#onMax" stylesheets="@../css/main.css">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -87,7 +90,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="closeButton" mnemonicParsing="false" stylesheets="@../css/main.css">
+                        <Button fx:id="closeButton" mnemonicParsing="false" onMouseClicked="#onClose" stylesheets="@../css/main.css">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
