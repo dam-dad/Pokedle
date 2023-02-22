@@ -75,11 +75,11 @@ public class PokeApi {
 		numPokedex = pokemonapi.getNumPokedex();
 		pokemon.setNumPokemon(numPokedex);
 
-//		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
+		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
+		pokemon.setImagenPokemon(img);
 
 		parts = pokemonapi.getSpecies().getUrl().split("/");
-		// TODO Eliminar este syso
-		System.out.println(Arrays.asList(parts));
+
 		int id = Integer.parseInt(parts[parts.length - 1]);
 
 		/*
@@ -101,18 +101,17 @@ public class PokeApi {
 		 * Manera de evolucionar
 		 */
 		String s = poSpecies.getEvolTo().toString();
-		System.out.println(s);
+
 		String url = s.substring(s.indexOf("=") + 1, s.length() - 1);
-		System.out.println(url);
+
 		parts = url.split("/");
 		id = Integer.parseInt(parts[parts.length - 1]);
-		System.out.println(id);
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
 		
-		for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
-			System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
-		}
+//		for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
+//			System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
+//		}
 		
 		//		chain.getEvolvesTo().get(0).getEvolutionDetails();
 
