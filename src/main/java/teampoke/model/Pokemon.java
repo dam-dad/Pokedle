@@ -1,71 +1,134 @@
 package teampoke.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Pokemon {
 	
-	private String nombrePokemon;
-	private String tipoPrimPokemon;
-	private String tipoSecPokemon;
-	private String pesoPokemon;
-	private String alturaPokemon;
-	private String numPokemon;
-	private String evoPokemon;
-	private String preevoPokemon;
-	private String formaDeEvoPokemon;
+	private StringProperty nombrePokemon = new SimpleStringProperty();
+	private StringProperty tipoPrimPokemon = new SimpleStringProperty();
+	private StringProperty tipoSecPokemon = new SimpleStringProperty();
+	private FloatProperty pesoPokemon = new SimpleFloatProperty();
+	private FloatProperty alturaPokemon = new SimpleFloatProperty();
+	private IntegerProperty numPokemon = new SimpleIntegerProperty();
+	private BooleanProperty evoPokemon = new SimpleBooleanProperty();
+	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
+	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
 	
-	public String getNombrePokemon() {
-		return nombrePokemon;
+	public final StringProperty nombrePokemonProperty() {
+		return this.nombrePokemon;
 	}
-	public void setNombrePokemon(String nombrePokemon) {
-		this.nombrePokemon = nombrePokemon;
+	
+	public final String getNombrePokemon() {
+		return this.nombrePokemonProperty().get();
 	}
-	public String getTipoPrimPokemon() {
-		return tipoPrimPokemon;
+	
+	public final void setNombrePokemon(final String nombrePokemon) {
+		this.nombrePokemonProperty().set(nombrePokemon);
 	}
-	public void setTipoPrimPokemon(String tipoPrimPokemon) {
-		this.tipoPrimPokemon = tipoPrimPokemon;
+	
+	public final StringProperty tipoPrimPokemonProperty() {
+		return this.tipoPrimPokemon;
 	}
-	public String getTipoSecPokemon() {
-		return tipoSecPokemon;
+	
+	public final String getTipoPrimPokemon() {
+		return this.tipoPrimPokemonProperty().get();
 	}
-	public void setTipoSecPokemon(String tipoSecPokemon) {
-		this.tipoSecPokemon = tipoSecPokemon;
+	
+	public final void setTipoPrimPokemon(final String tipoPrimPokemon) {
+		this.tipoPrimPokemonProperty().set(tipoPrimPokemon);
 	}
-	public String getPesoPokemon() {
-		return pesoPokemon;
+	
+	public final StringProperty tipoSecPokemonProperty() {
+		return this.tipoSecPokemon;
 	}
-	public void setPesoPokemon(String pesoPokemon) {
-		this.pesoPokemon = pesoPokemon;
+	
+	public final String getTipoSecPokemon() {
+		return this.tipoSecPokemonProperty().get();
 	}
-	public String getAlturaPokemon() {
-		return alturaPokemon;
+	
+	public final void setTipoSecPokemon(final String tipoSecPokemon) {
+		this.tipoSecPokemonProperty().set(tipoSecPokemon);
 	}
-	public void setAlturaPokemon(String alturaPokemon) {
-		this.alturaPokemon = alturaPokemon;
+	
+	public final FloatProperty pesoPokemonProperty() {
+		return this.pesoPokemon;
 	}
-	public String getNumPokemon() {
-		return numPokemon;
+	
+	public final float getPesoPokemon() {
+		return this.pesoPokemonProperty().get();
 	}
-	public void setNumPokemon(String numPokemon) {
-		this.numPokemon = numPokemon;
+	
+	public final void setPesoPokemon(final float pesoPokemon) {
+		this.pesoPokemonProperty().set(pesoPokemon);
 	}
-	public String getEvoPokemon() {
-		return evoPokemon;
+	
+	public final FloatProperty alturaPokemonProperty() {
+		return this.alturaPokemon;
 	}
-	public void setEvoPokemon(String evoPokemon) {
-		this.evoPokemon = evoPokemon;
+	
+	public final float getAlturaPokemon() {
+		return this.alturaPokemonProperty().get();
 	}
-	public String getPreevoPokemon() {
-		return preevoPokemon;
+	
+	public final void setAlturaPokemon(final float alturaPokemon) {
+		this.alturaPokemonProperty().set(alturaPokemon);
 	}
-	public void setPreevoPokemon(String preevoPokemon) {
-		this.preevoPokemon = preevoPokemon;
+	
+	public final IntegerProperty numPokemonProperty() {
+		return this.numPokemon;
 	}
-	public String getFormaDeEvoPokemon() {
-		return formaDeEvoPokemon;
+	
+	public final int getNumPokemon() {
+		return this.numPokemonProperty().get();
 	}
-	public void setFormaDeEvoPokemon(String formaDeEvoPokemon) {
-		this.formaDeEvoPokemon = formaDeEvoPokemon;
+	
+	public final void setNumPokemon(final int numPokemon) {
+		this.numPokemonProperty().set(numPokemon);
 	}
+	
+	public final BooleanProperty evoPokemonProperty() {
+		return this.evoPokemon;
+	}
+	
+	public final boolean isEvoPokemon() {
+		return this.evoPokemonProperty().get();
+	}
+	
+	public final void setEvoPokemon(final boolean evoPokemon) {
+		this.evoPokemonProperty().set(evoPokemon);
+	}
+	
+	public final BooleanProperty preevoPokemonProperty() {
+		return this.preevoPokemon;
+	}
+	
+	public final boolean isPreevoPokemon() {
+		return this.preevoPokemonProperty().get();
+	}
+	
+	public final void setPreevoPokemon(final boolean preevoPokemon) {
+		this.preevoPokemonProperty().set(preevoPokemon);
+	}
+	
+	public final StringProperty formaDeEvoPokemonProperty() {
+		return this.formaDeEvoPokemon;
+	}
+	
+	public final String getFormaDeEvoPokemon() {
+		return this.formaDeEvoPokemonProperty().get();
+	}
+	
+	public final void setFormaDeEvoPokemon(final String formaDeEvoPokemon) {
+		this.formaDeEvoPokemonProperty().set(formaDeEvoPokemon);
+	}
+	
 	
 	
 }

@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.AutoCompletionBinding.ISuggestionRequest;
-
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -33,12 +34,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Callback;
 import teampoke.component.PokeInfoComponent;
+import teampoke.model.Pokemon;
+import teampoke.pokeapi.PokeApi;
 
 public class PlayController implements Initializable {
 
 	// model
 
-	private StringProperty pokemonEnviado = new SimpleStringProperty();
+	PokeApi pokeapi = new PokeApi();
+	private Pokemon pokemonOculto = new Pokemon();
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<String> pokemonList = new SimpleListProperty<>(FXCollections.observableArrayList());
 
@@ -96,7 +100,7 @@ public class PlayController implements Initializable {
 		pokemonList.add("Charmander");
 		
 		// bindings
-		pokemonEnviado.bind(pokemonTextField.textProperty());
+		
 		sendPokemonButton.disableProperty().bind(pokemonTextField.textProperty().isEmpty());
 		sendPokemonButton.disableProperty().bind(
 				Bindings.createBooleanBinding(() -> {
@@ -123,22 +127,28 @@ public class PlayController implements Initializable {
 		return view;
 	}
 
+	public void elegirPokemon() throws Exception {
+		pokemonOculto = pokeapi.getPokemon("pikachu");
+		
+
+	}
+	
 	@FXML
 	void onSendPokemon(ActionEvent event) {
 
 		pokeInfo.setVisible(true); // para que se vea el ListView
 		PokeInfoComponent pokemonEnviadoInfo = new PokeInfoComponent();
-		pokemonEnviadoInfo.setNombrePokemon(pokemonEnviado.get());
-		pokemonEnviadoInfo.setTipoPrimPokemon("Eléctrico");
-		pokemonEnviadoInfo.setTipoSecPokemon("No tiene");
-		pokemonEnviadoInfo.setPesoPokemon("10 kg");
-		pokemonEnviadoInfo.setAlturaPokemon("0,4 m");
-		pokemonEnviadoInfo.setNumPokemon("25");
-		pokemonEnviadoInfo.setEvoPokemon("Sí");
-		pokemonEnviadoInfo.setPreevoPokemon("Sí");
-		pokemonEnviadoInfo.setFormaDeEvoPokemon("Piedra");
+		pokemonEnviadoInfo.setNombrePokemon(pokemonOculto.getNombrePokemon());
+		pokemonEnviadoInfo.setTipoPrimPokemon(pokemonOculto.getTipoPrimPokemon());
+		pokemonEnviadoInfo.setTipoSecPokemon(pokemonOculto.getTipoSecPokemon());
+		pokemonEnviadoInfo.setPesoPokemon(String.valueOf(pokemonOculto.getPesoPokemon())+ " kg" );
+		pokemonEnviadoInfo.setAlturaPokemon(String.valueOf(pokemonOculto.getAlturaPokemon())+ " m" );
+		pokemonEnviadoInfo.setNumPokemon(String.valueOf(pokemonOculto.getNumPokemon()));
+		pokemonEnviadoInfo.setEvoPokemon(String.valueOf(pokemonOculto.isEvoPokemon()));
+		pokemonEnviadoInfo.setPreevoPokemon(String.valueOf(pokemonOculto.isPreevoPokemon()));
+		pokemonEnviadoInfo.setFormaDeEvoPokemon(pokemonOculto.getFormaDeEvoPokemon());
 
-		pokemonList.remove(pokemonEnviado.get());
+//		pokemonList.remove(pokemonEnviado.get());
 		
 		pokemonTextField.setText(null);
 
