@@ -12,6 +12,25 @@ public class Pokemon {
 	private String preevoPokemon;
 	private String formaDeEvoPokemon;
 	
+	public Pokemon() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Pokemon(String name, String typePrim, String typeSec, String weight, 
+			String height, String numPokedex, String evoTo, String evoFrom,
+			String formEvoTo) {
+		nombrePokemon = name;
+		tipoPrimPokemon = typePrim;
+		tipoSecPokemon = typeSec;
+		pesoPokemon = weight;
+		alturaPokemon = height;
+		numPokemon = numPokedex;
+		evoPokemon = evoTo;
+		preevoPokemon = evoFrom;
+		formaDeEvoPokemon = formEvoTo;
+		
+	}
+	
 	public String getNombrePokemon() {
 		return nombrePokemon;
 	}
@@ -65,6 +84,13 @@ public class Pokemon {
 	}
 	public void setFormaDeEvoPokemon(String formaDeEvoPokemon) {
 		this.formaDeEvoPokemon = formaDeEvoPokemon;
+	}
+
+	@Override
+	public String toString() {
+		return "Pokemon [nombrePokemon=" + nombrePokemon + ", tipoPrimPokemon=" + tipoPrimPokemon + ", tipoSecPokemon="
+				+ tipoSecPokemon + ", pesoPokemon=" + pesoPokemon + ", alturaPokemon=" + alturaPokemon + ", numPokemon="
+				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + "]";
 	}
 	
 	

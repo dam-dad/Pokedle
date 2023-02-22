@@ -1,4 +1,4 @@
-package teampoke.model;
+package teampoke.pokeapi.model;
 
 import java.util.List;
 
