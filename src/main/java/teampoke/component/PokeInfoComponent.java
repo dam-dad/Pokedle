@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -24,9 +28,9 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	private StringProperty tipoSecPokemon = new SimpleStringProperty();
 	private StringProperty pesoPokemon = new SimpleStringProperty();
 	private StringProperty alturaPokemon = new SimpleStringProperty();
-	private StringProperty numPokemon = new SimpleStringProperty();
-	private StringProperty evoPokemon = new SimpleStringProperty();
-	private StringProperty preevoPokemon = new SimpleStringProperty();
+	private IntegerProperty numPokemon = new SimpleIntegerProperty();
+	private BooleanProperty evoPokemon = new SimpleBooleanProperty();
+	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
 	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
 	
 	// view
@@ -82,9 +86,9 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 		tipoSecundarioLabel.textProperty().bind(tipoSecPokemon);
 		pesoLabel.textProperty().bind(pesoPokemon);
 		alturaLabel.textProperty().bind(alturaPokemon);
-		numPokedexLabel.textProperty().bind(numPokemon);
-		evolucionaLabel.textProperty().bind(evoPokemon);
-		preevolucionLabel.textProperty().bind(preevoPokemon);
+		numPokedexLabel.textProperty().bind(numPokemon.asString());
+		evolucionaLabel.textProperty().bind(evoPokemon.asString());
+		preevolucionLabel.textProperty().bind(preevoPokemon.asString());
 		maneraEvolucionarLabel.textProperty().bind(formaDeEvoPokemon);
 		
 	}
@@ -164,47 +168,47 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	}
 	
 
-	public final StringProperty numPokemonProperty() {
+	public final IntegerProperty numPokemonProperty() {
 		return this.numPokemon;
 	}
 	
 
-	public final String getNumPokemon() {
+	public final Integer getNumPokemon() {
 		return this.numPokemonProperty().get();
 	}
 	
 
-	public final void setNumPokemon(final String numPokemon) {
+	public final void setNumPokemon(final Integer numPokemon) {
 		this.numPokemonProperty().set(numPokemon);
 	}
 	
 
-	public final StringProperty evoPokemonProperty() {
+	public final BooleanProperty evoPokemonProperty() {
 		return this.evoPokemon;
 	}
 	
 
-	public final String getEvoPokemon() {
+	public final Boolean getEvoPokemon() {
 		return this.evoPokemonProperty().get();
 	}
 	
 
-	public final void setEvoPokemon(final String evoPokemon) {
+	public final void setEvoPokemon(final Boolean evoPokemon) {
 		this.evoPokemonProperty().set(evoPokemon);
 	}
 	
 
-	public final StringProperty preevoPokemonProperty() {
+	public final BooleanProperty preevoPokemonProperty() {
 		return this.preevoPokemon;
 	}
 	
 
-	public final String getPreevoPokemon() {
+	public final Boolean getPreevoPokemon() {
 		return this.preevoPokemonProperty().get();
 	}
 	
 
-	public final void setPreevoPokemon(final String preevoPokemon) {
+	public final void setPreevoPokemon(final Boolean preevoPokemon) {
 		this.preevoPokemonProperty().set(preevoPokemon);
 	}
 	

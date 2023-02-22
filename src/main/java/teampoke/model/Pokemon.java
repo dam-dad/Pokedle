@@ -3,14 +3,18 @@ package teampoke.model;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 
 public class Pokemon {
 	
+	private ObjectProperty<Image> imagenPokemon = new SimpleObjectProperty<>();
 	private StringProperty nombrePokemon = new SimpleStringProperty();
 	private StringProperty tipoPrimPokemon = new SimpleStringProperty();
 	private StringProperty tipoSecPokemon = new SimpleStringProperty();
@@ -21,9 +25,15 @@ public class Pokemon {
 	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
 	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
 	
+
 	public final StringProperty nombrePokemonProperty() {
 		return this.nombrePokemon;
 	}
+		
+	public Pokemon() {
+		// TODO Auto-generated constructor stub
+	}
+
 	
 	public final String getNombrePokemon() {
 		return this.nombrePokemonProperty().get();
@@ -92,6 +102,13 @@ public class Pokemon {
 	public final void setNumPokemon(final int numPokemon) {
 		this.numPokemonProperty().set(numPokemon);
 	}
+
+	@Override
+	public String toString() {
+		return "Pokemon [nombrePokemon=" + nombrePokemon + ", tipoPrimPokemon=" + tipoPrimPokemon + ", tipoSecPokemon="
+				+ tipoSecPokemon + ", pesoPokemon=" + pesoPokemon + ", alturaPokemon=" + alturaPokemon + ", numPokemon="
+				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + "]";
+	}
 	
 	public final BooleanProperty evoPokemonProperty() {
 		return this.evoPokemon;
@@ -128,6 +145,21 @@ public class Pokemon {
 	public final void setFormaDeEvoPokemon(final String formaDeEvoPokemon) {
 		this.formaDeEvoPokemonProperty().set(formaDeEvoPokemon);
 	}
+
+	public final ObjectProperty<Image> imagenPokemonProperty() {
+		return this.imagenPokemon;
+	}
+	
+
+	public final Image getImagenPokemon() {
+		return this.imagenPokemonProperty().get();
+	}
+	
+
+	public final void setImagenPokemon(final Image imagenPokemon) {
+		this.imagenPokemonProperty().set(imagenPokemon);
+	}
+	
 	
 	
 	
