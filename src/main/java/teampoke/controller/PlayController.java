@@ -117,7 +117,6 @@ public class PlayController implements Initializable {
 			}
 		});
 		
-		
 	}
 
 	public StackPane getView() {
@@ -139,6 +138,8 @@ public class PlayController implements Initializable {
 		pokemonEnviadoInfo.setPreevoPokemon("Sí");
 		pokemonEnviadoInfo.setFormaDeEvoPokemon("Piedra");
 
+		pokemonList.remove(pokemonEnviado.get());
+		
 		pokemonTextField.setText(null);
 
 		if (pokemonEnviadoInfo.getNombrePokemon().trim().toUpperCase().equals("PIKACHU")) {
