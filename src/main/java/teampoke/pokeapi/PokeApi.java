@@ -1,7 +1,6 @@
 package teampoke.pokeapi;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import javafx.scene.image.Image;
@@ -11,11 +10,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import teampoke.model.Pokemon;
-import teampoke.pokeapi.model.Chain;
 import teampoke.pokeapi.model.EvolutionChain;
 import teampoke.pokeapi.model.PokemonApi;
 import teampoke.pokeapi.model.PokemonSpecies;
-import teampoke.pokeapi.model.Species;
 
 public class PokeApi {
 	private PokeApiInterface service;

@@ -21,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,11 +36,12 @@ public class PlayController implements Initializable {
 
 	// model
 
-	PokeApi pokeapi = new PokeApi();
+	private PokeApi pokeapi = new PokeApi();
 	private Pokemon pokemonOculto = new Pokemon();
 	private Pokemon pokemonEnviado = new Pokemon();
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<String> pokemonList = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private int numeroDePokemonAdivinados;
 
 	// view
 
@@ -75,7 +75,7 @@ public class PlayController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		try {
 			cargarListaPokemon();
 			elegirPokemon();
@@ -83,7 +83,7 @@ public class PlayController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// para el video de fondo
 		Media media = new Media(getClass().getResource("/media/fondo.mp4").toString());
 		MediaPlayer player = new MediaPlayer(media);
@@ -102,29 +102,26 @@ public class PlayController implements Initializable {
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
 
-		
 		// bindings
 		pokemonEnviado.nombrePokemonProperty().bind(pokemonTextField.textProperty());
 		sendPokemonButton.disableProperty().bind(pokemonTextField.textProperty().isEmpty());
-		sendPokemonButton.disableProperty().bind(
-				Bindings.createBooleanBinding(() -> {
-					return (!pokemonList.contains(pokemonTextField.textProperty().get()));
-				},pokemonTextField.textProperty())
-				);
+		sendPokemonButton.disableProperty().bind(Bindings.createBooleanBinding(() -> {
+			return (!pokemonList.contains(pokemonTextField.textProperty().get()));
+		}, pokemonTextField.textProperty()));
 
 		pokemonListView.itemsProperty().bind(pokemonInfoList);
-		
-		TextFields.bindAutoCompletion(pokemonTextField, new Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>>(){
 
-			@Override
-			public Collection<String> call(ISuggestionRequest param) {
-				return pokemonList.stream()
-					.filter(n->n.toLowerCase().startsWith(param.getUserText().toLowerCase()))
-					.sorted()
-					.collect(Collectors.toList());			
-			}
-		});
-		
+		TextFields.bindAutoCompletion(pokemonTextField,
+				new Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>>() {
+
+					@Override
+					public Collection<String> call(ISuggestionRequest param) {
+						return pokemonList.stream()
+								.filter(n -> n.toLowerCase().startsWith(param.getUserText().toLowerCase())).sorted()
+								.collect(Collectors.toList());
+					}
+				});
+
 	}
 
 	public StackPane getView() {
@@ -132,44 +129,68 @@ public class PlayController implements Initializable {
 	}
 
 	public void elegirPokemon() throws Exception {
-		
-		pokemonOculto = pokeapi.getPokemon(pokemonList.get((int) Math.random()*pokemonList.getSize()+1));
-		
+
+		pokemonOculto = pokeapi.getPokemon(pokemonList.get((int) Math.floor(Math.random() * pokemonList.getSize())));
+		System.out.println(pokemonOculto);
+
 	}
-	
+
 	public void cargarListaPokemon() throws IOException {
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i < 151; i++) {
 			pokemonList.add(pokeapi.getPokemonById(i).getSpecies().getName());
 		}
 	}
-	
+
 	@FXML
 	void onSendPokemon(ActionEvent event) throws Exception {
 
-		Pokemon pokemon = pokeapi.getPokemon(pokemonEnviado.getNombrePokemon());		
-		
-		pokeInfo.setVisible(true); // para que se vea el ListView
 		PokeInfoComponent pokemonEnviadoInfo = new PokeInfoComponent();
-		
-		pokemonEnviadoInfo.getPokemonImage().imageProperty().bind(pokemon.imagenPokemonProperty());
-		pokemonEnviadoInfo.nombrePokemonProperty().bind(pokemon.nombrePokemonProperty());  
-		pokemonEnviadoInfo.tipoPrimPokemonProperty().bind(pokemon.tipoPrimPokemonProperty());
-		pokemonEnviadoInfo.tipoSecPokemonProperty().bind(pokemon.tipoSecPokemonProperty());
-		pokemonEnviadoInfo.pesoPokemonProperty().bind(pokemon.pesoPokemonProperty().multiply(0.1).asString().concat(" kg"));
-		pokemonEnviadoInfo.alturaPokemonProperty().bind(pokemon.alturaPokemonProperty().multiply(0.1).asString().concat(" m"));
-		pokemonEnviadoInfo.numPokemonProperty().bind(pokemon.numPokemonProperty());
-		pokemonEnviadoInfo.evoPokemonProperty().bind(pokemon.evoPokemonProperty());
-		pokemonEnviadoInfo.preevoPokemonProperty().bind(pokemon.preevoPokemonProperty());
-		pokemonEnviadoInfo.formaDeEvoPokemonProperty().bind(pokemon.formaDeEvoPokemonProperty());
+
+		Pokemon pokemon = pokeapi.getPokemon(pokemonEnviado.getNombrePokemon());
+
+		pokeInfo.setVisible(true); // para que se vea el ListView
+
+		pokemonEnviadoInfo.getPokemonImage().setImage(pokemon.getImagenPokemon());
+		pokemonEnviadoInfo.setNombrePokemon(pokemon.getNombrePokemon());
+		pokemonEnviadoInfo.setTipoPrimPokemon(pokemon.getTipoPrimPokemon());
+		pokemonEnviadoInfo.setTipoSecPokemon(pokemon.getTipoSecPokemon());
+		pokemonEnviadoInfo.setPesoPokemon(Math.round(pokemon.getPesoPokemon() * 0.1 * 100d) / 100d + " kg");
+		pokemonEnviadoInfo.setAlturaPokemon(Math.round(pokemon.getAlturaPokemon() * 0.1 * 100d) / 100d + " m");
+		pokemonEnviadoInfo.setNumPokemon(pokemon.getNumPokemon());
+		pokemonEnviadoInfo.setEvoPokemon(pokemon.isEvoPokemon());
+		pokemonEnviadoInfo.setPreevoPokemon(pokemon.isPreevoPokemon());
+		pokemonEnviadoInfo.setFormaDeEvoPokemon(pokemon.getFormaDeEvoPokemon());
 
 		pokemonList.remove(pokemon.getNombrePokemon());
-		
 
 		pokemonTextField.setText(null);
+
+		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
+			nuevaPartida();
+		}
+
+		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
+
+	}
+
+	private void nuevaPartida() {
+		try {
+			elegirPokemon();
+			cargarListaPokemon();
+			pokemonInfoList.removeAll(pokemonInfoList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
+	}
+
+	public boolean pokemonAdivinado(Pokemon pokemon, PokeInfoComponent pokemonEnviadoInfo) {
+		
+		boolean pokemonAdivinado;
+
 		if (pokemonOculto.getNumPokemon() == pokemon.getNumPokemon()) {
-			System.out.println("Pokémon adivinado");
 			pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("bien");
@@ -178,65 +199,70 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
+			numeroDePokemonAdivinados++;
+			pokemonAdivinado = true;
 
 		} else {
 			
-			if(pokemon.getTipoPrimPokemon().equals(pokemonOculto.getTipoPrimPokemon())) {
-				
+			pokemonAdivinado = false;
+
+			if (pokemon.getTipoPrimPokemon().equals(pokemonOculto.getTipoPrimPokemon())) {
+
 				pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("bien");
-			}else {
+			} else {
 				pokemonEnviadoInfo.getTipoPrimarioLabel().getStyleClass().add("mal");
 			}
-			
-			if(pokemon.getTipoSecPokemon().equals(pokemonOculto.getTipoSecPokemon())) {
+
+			if (pokemon.getTipoSecPokemon().equals(pokemonOculto.getTipoSecPokemon())) {
 				pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("bien");
 			} else {
 				pokemonEnviadoInfo.getTipoSecundarioLabel().getStyleClass().add("mal");
 			}
-			
-			if(pokemon.getPesoPokemon() < pokemonOculto.getPesoPokemon()) {
+
+			if (pokemon.getPesoPokemon() < pokemonOculto.getPesoPokemon()) {
 				pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("mal-arriba");
-			} else if(pokemon.getPesoPokemon() > pokemonOculto.getPesoPokemon()) {
+			} else if (pokemon.getPesoPokemon() > pokemonOculto.getPesoPokemon()) {
 				pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("mal-abajo");
 			} else {
 				pokemonEnviadoInfo.getPesoLabel().getStyleClass().add("bien");
 			}
-			
-			if(pokemon.getAlturaPokemon() < pokemonOculto.getAlturaPokemon()) {
+
+			if (pokemon.getAlturaPokemon() < pokemonOculto.getAlturaPokemon()) {
 				pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("mal-arriba");
-			}else if(pokemon.getAlturaPokemon() > pokemonOculto.getAlturaPokemon()){
+			} else if (pokemon.getAlturaPokemon() > pokemonOculto.getAlturaPokemon()) {
 				pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("mal-abajo");
-			}else {
+			} else {
 				pokemonEnviadoInfo.getAlturaLabel().getStyleClass().add("bien");
 			}
-			
-			if(pokemon.getNumPokemon() < pokemonOculto.getNumPokemon()) {
+
+			if (pokemon.getNumPokemon() < pokemonOculto.getNumPokemon()) {
 				pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("mal-arriba");
-			}else {
+			} else {
 				pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("mal-abajo");
 			}
-			
-			if(pokemon.isEvoPokemon() == pokemonOculto.isEvoPokemon()) {
+
+			if (pokemon.isEvoPokemon() == pokemonOculto.isEvoPokemon()) {
 				pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
-			}else {
+			} else {
 				pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("mal");
 			}
-			
-			if(pokemon.isPreevoPokemon() == pokemonOculto.isPreevoPokemon()) {
+
+			if (pokemon.isPreevoPokemon() == pokemonOculto.isPreevoPokemon()) {
 				pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
 			} else {
 				pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("mal");
 			}
 			
-			if(pokemonEnviado.getFormaDeEvoPokemon().equals(pokemonOculto.getFormaDeEvoPokemon())) {
-				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
-			} else {
-				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
-			}
+//			if (pokemonEnviado.getFormaDeEvoPokemon().equals(pokemonOculto.getFormaDeEvoPokemon())) {
+//				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
+//			} else {
+//				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
+//			}
 			
 		}
-		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 
+		return pokemonAdivinado;
+		
 	}
 
 }
