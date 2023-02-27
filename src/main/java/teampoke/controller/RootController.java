@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -61,6 +64,9 @@ public class RootController implements Initializable {
 	@FXML
 	private BorderPane borderPane;
 
+	@FXML
+	private Slider volumeSlider;
+
 	public RootController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
 		loader.setController(this);
@@ -100,13 +106,17 @@ public class RootController implements Initializable {
 		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.setVolume(1.5);
 		mediaPlayer.play();
 
-//		closeButton.setOnMouseClicked(event -> {
-//			Stage stage = (Stage) closeButton.getScene().getWindow();
-//			stage.close();
-//		});
+		// volumen de audio
+		volumeSlider.setValue(mediaPlayer.getVolume()*100);
+		volumeSlider.valueProperty().addListener(new InvalidationListener() {
+			
+			@Override
+			public void invalidated(Observable observable) {
+				mediaPlayer.setVolume(volumeSlider.getValue()/100);
+			}
+		});
 
 	}
 
@@ -116,7 +126,7 @@ public class RootController implements Initializable {
 
 	@FXML
 	void onMousePressed(MouseEvent event) {
-		cambiarEscena();
+//		cambiarEscena();
 	}
 
 	public void onEnterPressed() {

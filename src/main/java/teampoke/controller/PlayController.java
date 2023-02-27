@@ -2,6 +2,7 @@ package teampoke.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.ListProperty;
@@ -13,8 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,6 +33,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import teampoke.app.App;
 import teampoke.component.PokeInfoComponent;
 
 public class PlayController implements Initializable {
@@ -137,10 +144,12 @@ public class PlayController implements Initializable {
 		Stage stage = (Stage) minButton.getScene().getWindow();
 		stage.setIconified(true);
 	}
+	
+	boolean adivinado;
 
 	@FXML
 	void onSendPokemon(ActionEvent event) {
-
+		
 		pokeInfo.setVisible(true); // para que se vea el ListView
 		PokeInfoComponent pokemonEnviadoInfo = new PokeInfoComponent();
 		pokemonEnviadoInfo.setNombrePokemon(pokemonEnviado.get());
@@ -166,6 +175,7 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
+			adivinado=true;
 
 		} else {
 			pokemonEnviadoInfo.getPokemonImage()
@@ -181,7 +191,45 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
 		}
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
+		
+		if (adivinado) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("¡Enhorabuena!");
+			alert.setHeaderText("¡Has ganado!");
+			alert.setContentText("¿Quieres volver a jugar?");
+			ButtonType buttonPlayAgain = new ButtonType("Jugar de nuevo");
+			ButtonType buttonQuit = new ButtonType("Salir");
+			alert.getButtonTypes().setAll(buttonPlayAgain, buttonQuit);
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == buttonPlayAgain) {
+				reiniciarJuego();
+			} else {
+				Stage stage = (Stage) closeButton.getScene().getWindow();
+				stage.close();
+			} 
+		}
+
+	}
+	
+	
+	
+	
+	public void reiniciarJuego() {
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
+
+		loader.setController(this);
+		Scene scene = new Scene(this.getView());
+		App.primaryStage.setTitle("Pokédle");
+		App.primaryStage.setScene(scene);
+		App.primaryStage.getIcons().add(new Image("/images/pokedle_icon_32px.png"));
+		Image image = new Image("/images/cursor.png");
+		scene.setCursor(new ImageCursor(image));
+
+		App.primaryStage.setScene(scene);
 
 	}
 
 }
+
+
