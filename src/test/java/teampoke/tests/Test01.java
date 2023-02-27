@@ -1,18 +1,26 @@
 package teampoke.tests;
 
+import java.util.ArrayList;
+
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.PokeApi;
 
 public class Test01 {
 
 	public static void main(String[] args) throws Exception {
+		ArrayList<String> listapokemons = new ArrayList<>();
 		
 		PokeApi pokeapi = new PokeApi();
-		Pokemon pokemon;
-		
-		pokemon = pokeapi.getPokemon("charmander");
-		
-		System.out.println(pokemon);
+//		Pokemon pokemon;
+//		
+//		pokemon = pokeapi.getPokemon("charmander");
+//		System.out.println(pokemon);
+
+		listapokemons= pokeapi.getListPokemons();
+		for (String string : listapokemons) {
+			System.out.println(string);
+		}
+
 	}
 	
 	

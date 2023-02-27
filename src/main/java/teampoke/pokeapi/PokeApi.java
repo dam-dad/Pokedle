@@ -1,6 +1,8 @@
 package teampoke.pokeapi;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import javafx.scene.image.Image;
@@ -11,6 +13,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.model.EvolutionChain;
+import teampoke.pokeapi.model.ListPokemon;
 import teampoke.pokeapi.model.PokemonApi;
 import teampoke.pokeapi.model.PokemonSpecies;
 
@@ -30,12 +33,13 @@ public class PokeApi {
 
 	}
 
-/**
- * Funcion que obtiene el pokemon a traves del nombre por la api
- * @param name
- * @return
- * @throws Exception
- */
+	/**
+	 * Funcion que obtiene el pokemon a traves del nombre por la api
+	 * 
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
 	public Pokemon getPokemon(String name) throws Exception {
 		Pokemon pokemon = new Pokemon();
 		String tipoPrimario, tipoSecundario;
@@ -93,7 +97,7 @@ public class PokeApi {
 			evoluciona = true;
 			pokemon.setEvoPokemon(evoluciona);
 		}
-		
+
 		/*
 		 * Manera de evolucionar
 		 */
@@ -105,12 +109,12 @@ public class PokeApi {
 		id = Integer.parseInt(parts[parts.length - 1]);
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
-		
+
 //		for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
 //			System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
 //		}
-		
-		//		chain.getEvolvesTo().get(0).getEvolutionDetails();
+
+		// chain.getEvolvesTo().get(0).getEvolutionDetails();
 
 		return pokemon;
 	}
@@ -120,14 +124,21 @@ public class PokeApi {
 		return response.body();
 	}
 
-//	public PokemonSpecies getEvo(int pokemonId) throws IOException {
-//		
-//		Response<PokemonApi> response = service.getPokemonById(pokemonId).execute();
-//		String[] parts = response.body().getSpecies().getUrl().split("/");
-//		System.out.println(Arrays.asList(parts));
-//		int id = Integer.parseInt(parts[parts.length-1]);
-//		Response<PokemonSpecies> response2 = service.getEvolId(id).execute();
-//		return response2.body();
-//	}
+	public ArrayList<String> getListPokemons() throws IOException {
+		int maxPokemons;
+		ListPokemon listPokemon;
+		ArrayList<String> arrayListaPokemons = new ArrayList<>();
+
+		Response<ListPokemon> response = service.getListPokemon(1).execute();
+		maxPokemons = response.body().getNumPokemons();
+		response = service.getListPokemon(maxPokemons).execute();
+		listPokemon = response.body();
+		for (int i = 0; i < maxPokemons; i++) {
+			arrayListaPokemons.add(listPokemon.getPokemons().get(i).getName());
+		}
+		return arrayListaPokemons;
+
+	}
+
 
 }

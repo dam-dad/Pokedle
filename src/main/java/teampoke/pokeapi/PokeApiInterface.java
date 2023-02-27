@@ -3,7 +3,9 @@ package teampoke.pokeapi;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import teampoke.pokeapi.model.EvolutionChain;
+import teampoke.pokeapi.model.ListPokemon;
 import teampoke.pokeapi.model.PokemonApi;
 import teampoke.pokeapi.model.PokemonSpecies;
 
@@ -20,4 +22,7 @@ public interface PokeApiInterface {
 
 	@GET("evolution-chain/{chaId}")
 	public Call<EvolutionChain> getChain(@Path("chaId") int id);
+	
+	@GET("pokemon")
+	public Call<ListPokemon> getListPokemon(@Query("limit") int count);
 }
