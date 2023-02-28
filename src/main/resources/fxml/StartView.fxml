@@ -68,7 +68,7 @@
                   <HBox>
                      <children>
                         <Label text="V-" />
-                        <Slider>
+                        <Slider fx:id="volumeSlider">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>

@@ -126,7 +126,7 @@ public class RootController implements Initializable {
 
 	@FXML
 	void onMousePressed(MouseEvent event) {
-//		cambiarEscena();
+		cambiarEscena();
 	}
 
 	public void onEnterPressed() {

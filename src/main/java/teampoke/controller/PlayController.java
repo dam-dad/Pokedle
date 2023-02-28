@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -73,6 +76,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private StackPane view;
+	
+	@FXML
+	private Slider volumeSlider;
 
 	public PlayController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
@@ -101,12 +107,21 @@ public class PlayController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
-		// archivo de audio
-		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.setVolume(1.5);
-		mediaPlayer.play();
+//		// archivo de audio
+//		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//		mediaPlayer.play();
+//
+//		// volumen de audio
+//		volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+//		volumeSlider.valueProperty().addListener(new InvalidationListener() {
+//
+//			@Override
+//			public void invalidated(Observable observable) {
+//				mediaPlayer.setVolume(volumeSlider.getValue() / 100);
+//			}
+//		});
 
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
@@ -144,12 +159,12 @@ public class PlayController implements Initializable {
 		Stage stage = (Stage) minButton.getScene().getWindow();
 		stage.setIconified(true);
 	}
-	
+
 	boolean adivinado;
 
 	@FXML
 	void onSendPokemon(ActionEvent event) {
-		
+
 		pokeInfo.setVisible(true); // para que se vea el ListView
 		PokeInfoComponent pokemonEnviadoInfo = new PokeInfoComponent();
 		pokemonEnviadoInfo.setNombrePokemon(pokemonEnviado.get());
@@ -175,7 +190,7 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
-			adivinado=true;
+			adivinado = true;
 
 		} else {
 			pokemonEnviadoInfo.getPokemonImage()
@@ -191,7 +206,7 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
 		}
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
-		
+
 		if (adivinado) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("¡Enhorabuena!");
@@ -206,14 +221,11 @@ public class PlayController implements Initializable {
 			} else {
 				Stage stage = (Stage) closeButton.getScene().getWindow();
 				stage.close();
-			} 
+			}
 		}
 
 	}
-	
-	
-	
-	
+
 	public void reiniciarJuego() {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
@@ -231,5 +243,3 @@ public class PlayController implements Initializable {
 	}
 
 }
-
-
