@@ -22,8 +22,7 @@ public class App extends Application {
 		
 		App.primaryStage = primaryStage;
 		Scene scene = new Scene(rootController.getView());
-		
-		primaryStage.setTitle("Pokédle");
+
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image("/images/pokedle_icon_32px.png"));
 //		primaryStage.initStyle(StageStyle.UNDECORATED);

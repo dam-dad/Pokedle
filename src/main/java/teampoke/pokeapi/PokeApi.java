@@ -16,6 +16,7 @@ import teampoke.pokeapi.model.EvolutionChain;
 import teampoke.pokeapi.model.ListPokemon;
 import teampoke.pokeapi.model.PokemonApi;
 import teampoke.pokeapi.model.PokemonSpecies;
+import teampoke.pokeapi.model.Species;
 
 public class PokeApi {
 	private PokeApiInterface service;
@@ -125,12 +126,12 @@ public class PokeApi {
 	}
 
 	public ArrayList<String> getListPokemons() throws IOException {
-		int maxPokemons;
+		int maxPokemons =1008;
 		ListPokemon listPokemon;
 		ArrayList<String> arrayListaPokemons = new ArrayList<>();
 
 		Response<ListPokemon> response = service.getListPokemon(1).execute();
-		maxPokemons = response.body().getNumPokemons();
+//		maxPokemons = response.body().getNumPokemons();
 		response = service.getListPokemon(maxPokemons).execute();
 		listPokemon = response.body();
 		for (int i = 0; i < maxPokemons; i++) {
@@ -139,6 +140,6 @@ public class PokeApi {
 		return arrayListaPokemons;
 
 	}
-
+	
 
 }
