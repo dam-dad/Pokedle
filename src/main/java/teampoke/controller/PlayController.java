@@ -35,7 +35,6 @@ import teampoke.pokeapi.PokeApi;
 public class PlayController implements Initializable {
 
 	// model
-
 	private PokeApi pokeapi = new PokeApi();
 	private Pokemon pokemonOculto = new Pokemon();
 	private Pokemon pokemonEnviado = new Pokemon();
@@ -136,9 +135,7 @@ public class PlayController implements Initializable {
 	}
 
 	public void cargarListaPokemon() throws IOException {
-		for (int i = 1; i < 151; i++) {
-			pokemonList.add(pokeapi.getPokemonById(i).getSpecies().getName());
-		}
+		pokemonList.addAll(pokeapi.getListPokemons());
 	}
 
 	@FXML
@@ -165,12 +162,12 @@ public class PlayController implements Initializable {
 
 		pokemonTextField.setText(null);
 
+		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
+
 		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
 			nuevaPartida();
 		}
-
-		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
-
+		
 	}
 
 	private void nuevaPartida() {
@@ -202,6 +199,7 @@ public class PlayController implements Initializable {
 			numeroDePokemonAdivinados++;
 			pokemonAdivinado = true;
 
+			
 		} else {
 			
 			pokemonAdivinado = false;
