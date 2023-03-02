@@ -98,7 +98,6 @@ public class PokeApi {
 			preevoluciona = true;
 			pokemon.setPreevoPokemon(preevoluciona);
 		}
-
 		
 
 		/*
@@ -113,7 +112,6 @@ public class PokeApi {
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
 
-
 //		if (evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName() == pokemon.getNombrePokemon()) {
 //			System.out.println(pokemon.getNombrePokemon());
 //			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
@@ -126,7 +124,7 @@ public class PokeApi {
 //			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
 //		}
 		
-		if (evo != null && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 ){
+		if (evo != null && evo.getChain().getEvolvesTo().size() > 0 && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 ){
 			
 			System.out.println(name);
 			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
@@ -146,9 +144,6 @@ public class PokeApi {
 			pokemon.setEvoPokemon(evoluciona);
 			System.out.println(pokemon.getNombrePokemon());
 		}
-		
-		
-		System.out.println(maneraDeEvolucion(evo));
 
 		return pokemon;
 	}

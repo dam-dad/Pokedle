@@ -113,7 +113,7 @@ public class PlayController implements Initializable {
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
 		// archivo de audio
-		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+		Media audioFile = new Media(getClass().getResource("/media/music_victory.mp3").toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
@@ -196,8 +196,17 @@ public class PlayController implements Initializable {
 		pokemonEnviadoInfo.setPesoPokemon(Math.round(pokemon.getPesoPokemon() * 0.1 * 100d) / 100d + " kg");
 		pokemonEnviadoInfo.setAlturaPokemon(Math.round(pokemon.getAlturaPokemon() * 0.1 * 100d) / 100d + " m");
 		pokemonEnviadoInfo.setNumPokemon(pokemon.getNumPokemon());
-		pokemonEnviadoInfo.setEvoPokemon(pokemon.isEvoPokemon());
-		pokemonEnviadoInfo.setPreevoPokemon(pokemon.isPreevoPokemon());
+		if(pokemon.isEvoPokemon()) {
+			pokemonEnviadoInfo.setEvoPokemon("Evoluciona");
+		} else {
+			pokemonEnviadoInfo.setEvoPokemon("No evoluciona");
+		}
+		if(pokemon.isPreevoPokemon()) {
+			pokemonEnviadoInfo.setPreevoPokemon("Tiene preevolución");
+		} else {
+			pokemonEnviadoInfo.setPreevoPokemon("No tiene preevolución");
+		}
+		
 		pokemonEnviadoInfo.setFormaDeEvoPokemon(pokemon.getFormaDeEvoPokemon());
 
 		pokemonList.remove(pokemon.getNombrePokemon());

@@ -29,8 +29,8 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	private StringProperty pesoPokemon = new SimpleStringProperty();
 	private StringProperty alturaPokemon = new SimpleStringProperty();
 	private IntegerProperty numPokemon = new SimpleIntegerProperty();
-	private BooleanProperty evoPokemon = new SimpleBooleanProperty();
-	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
+	private StringProperty evoPokemon = new SimpleStringProperty();
+	private StringProperty preevoPokemon = new SimpleStringProperty();
 	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
 	
 	// view
@@ -87,8 +87,8 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 		pesoLabel.textProperty().bind(pesoPokemon);
 		alturaLabel.textProperty().bind(alturaPokemon);
 		numPokedexLabel.textProperty().bind(numPokemon.asString());
-		evolucionaLabel.textProperty().bind(evoPokemon.asString());
-		preevolucionLabel.textProperty().bind(preevoPokemon.asString());
+		evolucionaLabel.textProperty().bind(evoPokemon);
+		preevolucionLabel.textProperty().bind(preevoPokemon);
 		maneraEvolucionarLabel.textProperty().bind(formaDeEvoPokemon);
 		
 	}
@@ -183,36 +183,6 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	}
 	
 
-	public final BooleanProperty evoPokemonProperty() {
-		return this.evoPokemon;
-	}
-	
-
-	public final Boolean getEvoPokemon() {
-		return this.evoPokemonProperty().get();
-	}
-	
-
-	public final void setEvoPokemon(final Boolean evoPokemon) {
-		this.evoPokemonProperty().set(evoPokemon);
-	}
-	
-
-	public final BooleanProperty preevoPokemonProperty() {
-		return this.preevoPokemon;
-	}
-	
-
-	public final Boolean getPreevoPokemon() {
-		return this.preevoPokemonProperty().get();
-	}
-	
-
-	public final void setPreevoPokemon(final Boolean preevoPokemon) {
-		this.preevoPokemonProperty().set(preevoPokemon);
-	}
-	
-
 	public final StringProperty formaDeEvoPokemonProperty() {
 		return this.formaDeEvoPokemon;
 	}
@@ -265,4 +235,34 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	public Label getTipoSecundarioLabel() {
 		return tipoSecundarioLabel;
 	}
+
+	public final StringProperty evoPokemonProperty() {
+		return this.evoPokemon;
+	}
+	
+
+	public final String getEvoPokemon() {
+		return this.evoPokemonProperty().get();
+	}
+	
+
+	public final void setEvoPokemon(final String evoPokemon) {
+		this.evoPokemonProperty().set(evoPokemon);
+	}
+	
+
+	public final StringProperty preevoPokemonProperty() {
+		return this.preevoPokemon;
+	}
+	
+
+	public final String getPreevoPokemon() {
+		return this.preevoPokemonProperty().get();
+	}
+	
+
+	public final void setPreevoPokemon(final String preevoPokemon) {
+		this.preevoPokemonProperty().set(preevoPokemon);
+	}
+	
 }
