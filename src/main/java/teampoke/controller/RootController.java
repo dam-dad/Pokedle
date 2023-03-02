@@ -9,10 +9,12 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -21,6 +23,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import teampoke.app.App;
 
@@ -139,6 +142,10 @@ public class RootController implements Initializable {
 
 		loader.setController(playController);
 		Scene scene = new Scene(playController.getView());
+		
+		Image image = new Image("/images/cursor.png"); 
+		scene.setCursor(new ImageCursor(image));
+		
 		App.primaryStage.setScene(scene);
 	}
 
