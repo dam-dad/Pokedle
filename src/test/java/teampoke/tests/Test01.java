@@ -11,15 +11,17 @@ public class Test01 {
 		ArrayList<String> listapokemons = new ArrayList<>();
 		
 		PokeApi pokeapi = new PokeApi();
-//		Pokemon pokemon;
+		Pokemon pokemon;
 //		
-//		pokemon = pokeapi.getPokemon("charmander");
-//		System.out.println(pokemon);
+		pokemon = pokeapi.getPokemon("charmander");
+		System.out.println(pokemon);
 
-		listapokemons= pokeapi.getListPokemons();
-		for (String string : listapokemons) {
-			System.out.println(string);
-		}
+		// listapokemons= pokeapi.getListPokemons();
+		// for (String string : listapokemons) {
+		// 	System.out.println(string);
+		// }
+
+
 
 	}
 	

@@ -52,7 +52,7 @@ public class PokeApi {
 		Response<PokemonApi> response = service.getPokemonInfo(name).execute();
 		if (response.code() != 200)
 			throw new Exception(response.errorBody().string());
-//		getEvo(response.body().getId());
+		// getEvo(response.body().getId());
 		PokemonApi pokemonapi = response.body();
 
 		pokemon.setNombrePokemon(name);
@@ -111,13 +111,39 @@ public class PokeApi {
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
 
-//		for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
-//			System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
-//		}
+		System.out.println(maneraDeEvolucion(evo));
+
+		// for (int i = 0; i <
+		// evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
+		// System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
+		// }
 
 		// chain.getEvolvesTo().get(0).getEvolutionDetails();
 
 		return pokemon;
+	}
+
+	private String maneraDeEvolucion(EvolutionChain evoChain) {
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getGender();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getHeldItem();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getItem();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMove();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMoveType();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getLocation();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinAffection();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinBeauty();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinHappiness();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getNeedsOverworldRain();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartySpecies();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartyType();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getRelativePhysicalStats();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTimeOfDay();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTradeSpecies();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTrigger();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTurnUpsideDown();
+
+		return evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).toString();
 	}
 
 	public PokemonApi getPokemonById(int pokemonId) throws IOException {
@@ -126,20 +152,19 @@ public class PokeApi {
 	}
 
 	public ArrayList<String> getListPokemons() throws IOException {
-		int maxPokemons =1008;
+		int maxPokemons = 1008;
 		ListPokemon listPokemon;
 		ArrayList<String> arrayListaPokemons = new ArrayList<>();
 
-		Response<ListPokemon> response = service.getListPokemon(1).execute();
-//		maxPokemons = response.body().getNumPokemons();
-		response = service.getListPokemon(maxPokemons).execute();
+		// Para automatizar coger el listado completo
+		// Response<ListPokemon> response = service.getListPokemon(1).execute();
+
+		Response<ListPokemon> response = service.getListPokemon(maxPokemons).execute();
 		listPokemon = response.body();
 		for (int i = 0; i < maxPokemons; i++) {
 			arrayListaPokemons.add(listPokemon.getPokemons().get(i).getName());
 		}
 		return arrayListaPokemons;
-
 	}
-	
 
 }
