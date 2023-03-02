@@ -26,6 +26,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -217,10 +218,18 @@ public class PlayController implements Initializable {
 			alert.getButtonTypes().setAll(buttonPlayAgain, buttonQuit);
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == buttonPlayAgain) {
-				reiniciarJuego();
+			    reiniciarJuego();
 			} else {
-				Stage stage = (Stage) closeButton.getScene().getWindow();
-				stage.close();
+			    TextInputDialog dialog = new TextInputDialog("");
+			    dialog.setTitle("Salir del juego");
+			    dialog.setHeaderText("Introduce tu nombre de usuario:");
+			    dialog.setContentText("Nombre de usuario:");
+			    Optional<String> userName = dialog.showAndWait();
+			    if (userName.isPresent()) {
+			        String nombreUsuario = userName.get();
+			        Stage stage = (Stage) closeButton.getScene().getWindow();
+			        stage.close();
+			    }
 			}
 		}
 

@@ -1,0 +1,15 @@
+@font-face {
+	src: url('../font/PressStart.ttf'),
+}
+
+.button{
+	-fx-background-color: transparent;
+}
+.root {
+    -fx-background-color: transparent;
+}
+
+#fondo{
+	-fx-background-color: transparent;
+}
+

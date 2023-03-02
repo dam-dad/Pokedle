@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" stylesheets="@../css/volumen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teampoke.controller.VolumenController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <ButtonBar fx:id="toolBar" buttonMinWidth="0.0">
+              <buttons>
+                  <Button fx:id="closeButton" mnemonicParsing="false" onMouseClicked="#onClose" stylesheets="@../css/main.css">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/x.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+              </buttons>
+               <VBox.margin>
+                  <Insets right="5.0" />
+               </VBox.margin>
+            </ButtonBar>
+            <VBox alignment="CENTER" spacing="5">
+               <children>
+                  <Label text="Volumen:" />
+                  <HBox alignment="CENTER" spacing="5">
+                     <children>
+                        <Button onAction="#bajarVolumen" text="-" />
+                        <Slider fx:id="sliderVolumen" max="1.0" min="0.0" value="0.5" />
+                        <Button onAction="#subirVolumen" text="+" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button onAction="#silenciar" text="Mute">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

@@ -6,17 +6,15 @@ import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.ImageCursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +23,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import teampoke.app.App;
 
@@ -63,9 +63,10 @@ public class RootController implements Initializable {
 
 	@FXML
 	private BorderPane borderPane;
-
+	
 	@FXML
-	private Slider volumeSlider;
+    private Button volumenButton;
+
 
 	public RootController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
@@ -75,6 +76,13 @@ public class RootController implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+	MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+	
+	public MediaPlayer getMediaPlayer() {
+	    return mediaPlayer;
 	}
 
 	@Override
@@ -103,20 +111,10 @@ public class RootController implements Initializable {
 		fadeTransition.play();
 
 		// archivo de audio
-		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//		mediaPlayer.play();
+//		
 
-		// volumen de audio
-		volumeSlider.setValue(mediaPlayer.getVolume()*100);
-		volumeSlider.valueProperty().addListener(new InvalidationListener() {
-			
-			@Override
-			public void invalidated(Observable observable) {
-				mediaPlayer.setVolume(volumeSlider.getValue()/100);
-			}
-		});
 
 	}
 
@@ -154,16 +152,26 @@ public class RootController implements Initializable {
 		Stage stage = (Stage) minButton.getScene().getWindow();
 		stage.setIconified(true);
 	}
+	
+	@FXML
+	void onVolumenButton(MouseEvent event) {
+		try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VolumenView.fxml"));
+	        Parent root = loader.load();
+	        Scene scene = new Scene(root);
+	        Stage stage = new Stage();
+	        stage.initStyle(StageStyle.UNDECORATED);
+	        stage.initModality(Modality.APPLICATION_MODAL); // establecer modalidad
+	        stage.setResizable(false); // no redimensionable
+	        stage.setScene(scene);
+	        stage.showAndWait(); // esperar hasta que se cierre la ventana
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 	public void cambiarEscena() {
-
-//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
-//
-//		loader.setController(playController);
-//		Scene scene = new Scene(playController.getView());
-//		Image image = new Image("/images/pb.png");
-//		scene.setCursor(new ImageCursor(image));
-//		App.primaryStage.setScene(scene);
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 
