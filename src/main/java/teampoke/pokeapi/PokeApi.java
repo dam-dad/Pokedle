@@ -90,7 +90,7 @@ public class PokeApi {
 		int id = Integer.parseInt(parts[parts.length - 1]);
 
 		/*
-		 * Tiene preevolucion y/o evolucion?
+		 * Tiene preevolucion 
 		 */
 		Response<PokemonSpecies> response2 = service.getSpecies(id).execute();
 		PokemonSpecies poSpecies = response2.body();
@@ -101,7 +101,7 @@ public class PokeApi {
 		
 
 		/*
-		 * Manera de evolucionar
+		 * Evolucion
 		 */
 		String s = poSpecies.getEvolTo().toString();
 
@@ -111,38 +111,44 @@ public class PokeApi {
 		id = Integer.parseInt(parts[parts.length - 1]);
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
+		ArrayList<String> evoluciones = new ArrayList<>();
+		ArrayList<Integer> evolucionesID = new ArrayList<>();
 
-//		if (evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName() == pokemon.getNombrePokemon()) {
-//			System.out.println(pokemon.getNombrePokemon());
-//			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
-//			evoluciona = true;
-//			pokemon.setEvoPokemon(evoluciona);
-//		} else {
-//			evoluciona = false;
-//			pokemon.setEvoPokemon(evoluciona);
-//			System.out.println(pokemon.getNombrePokemon());
-//			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
-//		}
-		
-		if (evo != null && evo.getChain().getEvolvesTo().size() > 0 && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 ){
+		if (evo != null && evo.getChain().getEvolvesTo().size() > 0){ 
+
 			
-			System.out.println(name);
-			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
 			
-			if(!evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName().equals(pokemon.getNombrePokemon()) ) {
-				evoluciona = true;
-				pokemon.setEvoPokemon(evoluciona);
-			} else {
-				evoluciona = false;
-				pokemon.setEvoPokemon(evoluciona);
+			if(evo.getChain().getEvolvesTo().get(0).getEvolvesTo().isEmpty()) { // es una cadena de 2 evoluciones	
+				
+				for (int i = 0; i < evo.getChain().getEvolvesTo().size(); i++) {
+					evoluciones.add(evo.getChain().getEvolvesTo().get(i).getSpecies().getName());
+				}
+				
+				if(!evoluciones.contains(pokemon.getNombrePokemon()) ) {
+					evoluciona = true;
+					pokemon.setEvoPokemon(evoluciona);
+				} else {
+					evoluciona = false;
+					pokemon.setEvoPokemon(evoluciona);
+				}
+			} else { // Cadena de 3 evoluciones
+				
+				for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size(); i++) {
+					evoluciones.add(evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(i).getSpecies().getName());					
+				}
+				
+				if(!evoluciones.contains(pokemon.getNombrePokemon()) ) {
+					evoluciona = true;
+					pokemon.setEvoPokemon(evoluciona);
+				} else {
+					evoluciona = false;
+					pokemon.setEvoPokemon(evoluciona);
+				}
 			}
-			
 			
 		} else {
 			evoluciona = false;
-			System.out.println("falso");
 			pokemon.setEvoPokemon(evoluciona);
-			System.out.println(pokemon.getNombrePokemon());
 		}
 
 		return pokemon;

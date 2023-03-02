@@ -27,6 +27,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import teampoke.app.App;
 
+/**
+ * 
+ * 
+ *
+ */
 public class RootController implements Initializable {
 
 	// controller
@@ -62,6 +67,9 @@ public class RootController implements Initializable {
 	@FXML
 	private BorderPane borderPane;
 
+	/**
+	 * 
+	 */
 	public RootController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
 		loader.setController(this);
