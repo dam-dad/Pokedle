@@ -9,8 +9,12 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +22,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import teampoke.app.App;
 
@@ -28,6 +34,18 @@ public class RootController implements Initializable {
 	PlayController playController = new PlayController();
 
 	// view
+	
+	@FXML
+	private Button closeButton;
+
+	@FXML
+	private Button maxButton;
+
+	@FXML
+	private Button minButton;
+
+	@FXML
+	private ButtonBar toolBar;
 
 	@FXML
 	private StackPane view;
@@ -94,6 +112,29 @@ public class RootController implements Initializable {
 	public void onEnterPressed() {
 		cambiarEscena();
 	}
+	
+	@FXML
+	void onClose(MouseEvent event) {
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		stage.close();
+	}
+
+	@FXML
+	void onMax(MouseEvent event) {
+		Stage stage = (Stage) maxButton.getScene().getWindow();
+		if (stage.isMaximized()) {
+			stage.setMaximized(false);
+		} else {
+			stage.setMaximized(true);
+		}
+	}
+
+	@FXML
+	void onMin(MouseEvent event) {
+		Stage stage = (Stage) minButton.getScene().getWindow();
+		stage.setIconified(true);
+	}
+
 
 	public void cambiarEscena() {
 
@@ -101,6 +142,10 @@ public class RootController implements Initializable {
 
 		loader.setController(playController);
 		Scene scene = new Scene(playController.getView());
+		
+		Image image = new Image("/images/cursor.png"); 
+		scene.setCursor(new ImageCursor(image));
+		
 		App.primaryStage.setScene(scene);
 	}
 

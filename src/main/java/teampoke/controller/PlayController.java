@@ -19,14 +19,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import teampoke.component.PokeInfoComponent;
 import teampoke.model.Pokemon;
@@ -43,6 +46,18 @@ public class PlayController implements Initializable {
 	private int numeroDePokemonAdivinados;
 
 	// view
+	
+	@FXML
+	private Button closeButton;
+
+	@FXML
+	private Button maxButton;
+
+	@FXML
+	private Button minButton;
+
+	@FXML
+	private ButtonBar toolBar;
 
 	@FXML
 	private MediaView mediaView;
@@ -79,7 +94,6 @@ public class PlayController implements Initializable {
 			cargarListaPokemon();
 			elegirPokemon();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -98,6 +112,12 @@ public class PlayController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
+		// archivo de audio
+		Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
+		
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
 
@@ -136,6 +156,28 @@ public class PlayController implements Initializable {
 
 	public void cargarListaPokemon() throws IOException {
 		pokemonList.addAll(pokeapi.getListPokemons());
+	}
+	
+	@FXML
+	void onClose(MouseEvent event) {
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		stage.close();
+	}
+
+	@FXML
+	void onMax(MouseEvent event) {
+		Stage stage = (Stage) maxButton.getScene().getWindow();
+		if (stage.isMaximized()) {
+			stage.setMaximized(false);
+		} else {
+			stage.setMaximized(true);
+		}
+	}
+
+	@FXML
+	void onMin(MouseEvent event) {
+		Stage stage = (Stage) minButton.getScene().getWindow();
+		stage.setIconified(true);
 	}
 
 	@FXML
@@ -176,7 +218,6 @@ public class PlayController implements Initializable {
 			cargarListaPokemon();
 			pokemonInfoList.removeAll(pokemonInfoList);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
