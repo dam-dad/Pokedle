@@ -35,9 +35,6 @@ public class PokemonApi {
 	// EvolucionaFrom
 	private String evolFrom;
 
-	// Manera de evolucionar
-	//TODO 
-
 	//Imagenes
     @SerializedName("sprites")
     @Expose

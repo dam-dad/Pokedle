@@ -107,8 +107,10 @@ public class Pokemon {
 	public String toString() {
 		return "Pokemon [nombrePokemon=" + nombrePokemon + ", tipoPrimPokemon=" + tipoPrimPokemon + ", tipoSecPokemon="
 				+ tipoSecPokemon + ", pesoPokemon=" + pesoPokemon + ", alturaPokemon=" + alturaPokemon + ", numPokemon="
-				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + "]";
+				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + ", maneraEvo=" + formaDeEvoPokemon + "]";
 	}
+
+
 	
 	public final BooleanProperty evoPokemonProperty() {
 		return this.evoPokemon;
