@@ -2,6 +2,7 @@ package teampoke.tests;
 
 import java.util.ArrayList;
 
+import teampoke.globalstats.globalApi;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.PokeApi;
 
@@ -10,6 +11,7 @@ public class Test01 {
 	public static void main(String[] args) throws Exception {
 		ArrayList<String> listapokemons = new ArrayList<>();
 		
+		// globalApi
 		PokeApi pokeapi = new PokeApi();
 		Pokemon pokemon;
 //		
