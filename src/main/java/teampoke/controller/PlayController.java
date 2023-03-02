@@ -3,6 +3,7 @@ package teampoke.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -216,7 +220,9 @@ public class PlayController implements Initializable {
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 
 		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
-			nuevaPartida();
+			
+			ventanaPokemonAdivinado();
+						
 		}
 		
 	}
@@ -311,23 +317,24 @@ public class PlayController implements Initializable {
 
 		return pokemonAdivinado;
 		
-//		if (adivinado) {
-//			Alert alert = new Alert(AlertType.CONFIRMATION);
-//			alert.setTitle("¡Enhorabuena!");
-//			alert.setHeaderText("¡Has ganado!");
-//			alert.setContentText("¿Quieres volver a jugar?");
-//			ButtonType buttonPlayAgain = new ButtonType("Jugar de nuevo");
-//			ButtonType buttonQuit = new ButtonType("Salir");
-//			alert.getButtonTypes().setAll(buttonPlayAgain, buttonQuit);
-//			Optional<ButtonType> result = alert.showAndWait();
-//			if (result.get() == buttonPlayAgain) {
-//				reiniciarJuego();
-//			} else {
-//				Stage stage = (Stage) closeButton.getScene().getWindow();
-//				stage.close();
-//			}
-//		}
 		
+	}
+	
+	private void ventanaPokemonAdivinado() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("¡Enhorabuena!");
+		alert.setHeaderText("¡Has ganado!");
+		alert.setContentText("¿Quieres volver a jugar?");
+		ButtonType buttonPlayAgain = new ButtonType("Jugar de nuevo");
+		ButtonType buttonQuit = new ButtonType("Salir");
+		alert.getButtonTypes().setAll(buttonPlayAgain, buttonQuit);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonPlayAgain) {
+			nuevaPartida();
+		} else {
+			Stage stage = (Stage) closeButton.getScene().getWindow();
+			stage.close();
+		}
 	}
 
 }
