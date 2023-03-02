@@ -1,3 +1,3 @@
 # Pokedle
 
-Realizaremos un juego similar a Wordle, con temática de Pokémon
+Juego similar a Wordle, con temática de Pokémon
