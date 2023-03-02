@@ -1,8 +1,11 @@
 package teampoke.globalstats;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import io.github.fvarrui.globalstats.GlobalStats;
+import io.github.fvarrui.globalstats.model.Rank;
 import io.github.fvarrui.globalstats.model.Stats;
 
 public class GlobalApi {
@@ -13,7 +16,7 @@ public class GlobalApi {
 
 	public static void addPuntuacion(String nameUser, Number value) {
 		try {
-			Stats stats = client.createStats(nameUser, new HashMap<String, Number>() {
+			Stats stats = client.createStats(nameUser, new HashMap<String, Object>() {
 				{
 					put("score", value);
 				}
@@ -22,5 +25,14 @@ public class GlobalApi {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public List<MarcadorPersonal> puntuaciones() throws Exception{
+		List<Rank> ranking = client.getLeaderboard("score", 10); 
+		List<MarcadorPersonal> rankingFiltrado = new ArrayList<>();
+		for (int i = 0; i < ranking.size(); i++) {
+			rankingFiltrado.add(new MarcadorPersonal(ranking.get(i).getName(), ranking.get(i).getValue()));			
+		}
+		return rankingFiltrado;
+	}
+	
 }
