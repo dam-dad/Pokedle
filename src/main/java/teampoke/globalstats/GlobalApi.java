@@ -11,16 +11,16 @@ public class GlobalApi {
 	private final static String C_ID = "jBVJuJ2uF7RH9dVLv4ldkgHOhrQUrVjKwfu1ZwwE";
 	private static GlobalStats client = new GlobalStats(C_ID, C_SECRET);
 
-	public static void addPuntuacion(String nameUser, Number value) {
-		try {
-			Stats stats = client.createStats(nameUser, new HashMap<String, Number>() {
-				{
-					put("score", value);
-				}
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void addPuntuacion(String nameUser, Number value) {
+//		try {
+//			Stats stats = client.createStats(nameUser, new HashMap<String, Number>() {
+//				{
+//					put("score", value);
+//				}
+//			});
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

@@ -23,7 +23,7 @@ public class Pokemon {
 	private IntegerProperty numPokemon = new SimpleIntegerProperty();
 	private BooleanProperty evoPokemon = new SimpleBooleanProperty();
 	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
-	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
+	private IntegerProperty vidaBasePokemon = new SimpleIntegerProperty();
 	
 
 	public final StringProperty nombrePokemonProperty() {
@@ -107,7 +107,7 @@ public class Pokemon {
 	public String toString() {
 		return "Pokemon [nombrePokemon=" + nombrePokemon + ", tipoPrimPokemon=" + tipoPrimPokemon + ", tipoSecPokemon="
 				+ tipoSecPokemon + ", pesoPokemon=" + pesoPokemon + ", alturaPokemon=" + alturaPokemon + ", numPokemon="
-				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + ", maneraEvo=" + formaDeEvoPokemon + "]";
+				+ numPokemon + ", evoPokemon=" + evoPokemon + ", preevoPokemon=" + preevoPokemon + ", vidaBase=" + vidaBasePokemon + "]";
 	}
 
 
@@ -136,17 +136,6 @@ public class Pokemon {
 		this.preevoPokemonProperty().set(preevoPokemon);
 	}
 	
-	public final StringProperty formaDeEvoPokemonProperty() {
-		return this.formaDeEvoPokemon;
-	}
-	
-	public final String getFormaDeEvoPokemon() {
-		return this.formaDeEvoPokemonProperty().get();
-	}
-	
-	public final void setFormaDeEvoPokemon(final String formaDeEvoPokemon) {
-		this.formaDeEvoPokemonProperty().set(formaDeEvoPokemon);
-	}
 
 	public final ObjectProperty<Image> imagenPokemonProperty() {
 		return this.imagenPokemon;
@@ -161,6 +150,21 @@ public class Pokemon {
 	public final void setImagenPokemon(final Image imagenPokemon) {
 		this.imagenPokemonProperty().set(imagenPokemon);
 	}
+
+	public final IntegerProperty vidaBasePokemonProperty() {
+		return this.vidaBasePokemon;
+	}
+	
+
+	public final int getVidaBasePokemon() {
+		return this.vidaBasePokemonProperty().get();
+	}
+	
+
+	public final void setVidaBasePokemon(final int vidaBasePokemon) {
+		this.vidaBasePokemonProperty().set(vidaBasePokemon);
+	}
+	
 		
 	
 }

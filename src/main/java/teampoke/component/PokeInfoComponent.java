@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -31,7 +29,7 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 	private IntegerProperty numPokemon = new SimpleIntegerProperty();
 	private StringProperty evoPokemon = new SimpleStringProperty();
 	private StringProperty preevoPokemon = new SimpleStringProperty();
-	private StringProperty formaDeEvoPokemon = new SimpleStringProperty();
+	private IntegerProperty vidaBasePokemon = new SimpleIntegerProperty();
 	
 	// view
 	
@@ -45,7 +43,7 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
     private Label evolucionaLabel;
 
     @FXML
-    private Label maneraEvolucionarLabel;
+    private Label vidaBaseLabel;
 
     @FXML
     private Label numPokedexLabel;
@@ -77,6 +75,7 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 		}
 	}
     
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -89,7 +88,7 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 		numPokedexLabel.textProperty().bind(numPokemon.asString());
 		evolucionaLabel.textProperty().bind(evoPokemon);
 		preevolucionLabel.textProperty().bind(preevoPokemon);
-		maneraEvolucionarLabel.textProperty().bind(formaDeEvoPokemon);
+		vidaBaseLabel.textProperty().bind(vidaBasePokemon.asString());
 		
 	}
 
@@ -182,21 +181,6 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 		this.numPokemonProperty().set(numPokemon);
 	}
 	
-
-	public final StringProperty formaDeEvoPokemonProperty() {
-		return this.formaDeEvoPokemon;
-	}
-	
-
-	public final String getFormaDeEvoPokemon() {
-		return this.formaDeEvoPokemonProperty().get();
-	}
-	
-
-	public final void setFormaDeEvoPokemon(final String formaDeEvoPokemon) {
-		this.formaDeEvoPokemonProperty().set(formaDeEvoPokemon);
-	}
-	
 	public ImageView getPokemonImage() {
 		return pokemonImage;
 	}
@@ -210,10 +194,6 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 
 	public Label getEvolucionaLabel() {
 		return evolucionaLabel;
-	}
-
-	public Label getManeraEvolucionarLabel() {
-		return maneraEvolucionarLabel;
 	}
 
 	public Label getNumPokedexLabel() {
@@ -263,6 +243,28 @@ public class PokeInfoComponent extends ListCell<Pokemon> implements Initializabl
 
 	public final void setPreevoPokemon(final String preevoPokemon) {
 		this.preevoPokemonProperty().set(preevoPokemon);
+	}
+
+	public final IntegerProperty vidaBasePokemonProperty() {
+		return this.vidaBasePokemon;
+	}
+	
+
+	public final int getVidaBasePokemon() {
+		return this.vidaBasePokemonProperty().get();
+	}
+	
+
+	public final void setVidaBasePokemon(final int vidaBasePokemon) {
+		this.vidaBasePokemonProperty().set(vidaBasePokemon);
+	}
+	
+	public Label getVidaBaseLabel() {
+		return vidaBaseLabel;
+	}
+
+	public void setVidaBaseLabel(Label vidaBaseLabel) {
+		this.vidaBaseLabel = vidaBaseLabel;
 	}
 	
 }

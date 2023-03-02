@@ -256,7 +256,7 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.setPreevoPokemon("No tiene preevolución");
 		}
 		
-		pokemonEnviadoInfo.setFormaDeEvoPokemon(pokemon.getFormaDeEvoPokemon());
+		pokemonEnviadoInfo.setVidaBasePokemon(pokemon.getVidaBasePokemon());
 
 		pokemonList.remove(pokemon.getNombrePokemon());
 
@@ -284,8 +284,7 @@ public class PlayController implements Initializable {
 			pokemonInfoList.removeAll(pokemonInfoList);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		
 	}
 
@@ -309,7 +308,7 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getNumPokedexLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
-			pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
+			pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("bien");
 			numeroDePokemonAdivinados++;
 			pokemonAdivinado = true;
 
@@ -365,11 +364,11 @@ public class PlayController implements Initializable {
 				pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("mal");
 			}
 			
-//			if (pokemonEnviado.getFormaDeEvoPokemon().equals(pokemonOculto.getFormaDeEvoPokemon())) {
-//				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("bien");
-//			} else {
-//				pokemonEnviadoInfo.getManeraEvolucionarLabel().getStyleClass().add("mal");
-//			}
+			if (pokemonEnviado.getVidaBasePokemon() < (pokemonOculto.getVidaBasePokemon())) {
+				pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("mal-arriba");
+			} else {
+				pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("mal-abajo");
+			}
 			
 		}
 

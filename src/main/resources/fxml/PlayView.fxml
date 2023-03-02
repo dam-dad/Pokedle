@@ -50,7 +50,7 @@
                               <Label alignment="CENTER" lineSpacing="1.0" prefWidth="120.0" text="Número de la Pokédex" textAlignment="CENTER" wrapText="true" />
                               <Label alignment="CENTER" lineSpacing="1.0" prefWidth="120.0" text="Evoluciona" />
                               <Label alignment="CENTER" lineSpacing="1.0" prefWidth="120.0" text="Tiene preevolución" textAlignment="CENTER" wrapText="true" HBox.hgrow="NEVER" />
-                              <Label alignment="CENTER" lineSpacing="1.0" prefWidth="120.0" text="Manera de evolucionar" textAlignment="CENTER" wrapText="true" />
+                              <Label alignment="CENTER" lineSpacing="1.0" prefWidth="120.0" text="Vida base" textAlignment="CENTER" wrapText="true" />
                            </children>
                         </HBox>
                         <ListView fx:id="pokemonListView" VBox.vgrow="ALWAYS" />

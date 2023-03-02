@@ -46,8 +46,8 @@ public class PokeApi {
 	 */
 	public Pokemon getPokemon(String name) throws Exception {
 		Pokemon pokemon = new Pokemon();
-		String tipoPrimario, tipoSecundario, generacion;
-		int peso, altura, numPokedex;
+		String tipoPrimario, tipoSecundario;
+		int peso, altura, numPokedex, vida;
 		boolean evoluciona = false, preevoluciona = false;
 		Image img;
 		String[] parts;
@@ -80,7 +80,8 @@ public class PokeApi {
 		numPokedex = pokemonapi.getNumPokedex();
 		pokemon.setNumPokemon(numPokedex);
 		
-		
+		vida = pokemonapi.getStat().get(0).getBaseStat();
+		pokemon.setVidaBasePokemon(vida);
 
 		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
 		pokemon.setImagenPokemon(img);

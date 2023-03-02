@@ -14,6 +14,6 @@
       <Label fx:id="numPokedexLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Número en Pokédex" wrapText="true" />
       <Label fx:id="evolucionaLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Evoluciona" />
       <Label fx:id="preevolucionLabel" alignment="CENTER" prefHeight="120.0" prefWidth="120.0" text="Tiene preevolución" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="maneraEvolucionarLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Manera de evolucionar" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="vidaBaseLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="120.0" text="Vida base" textAlignment="CENTER" wrapText="true" />
    </children>
 </HBox>
