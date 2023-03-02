@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -17,7 +16,7 @@
       <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" />
       <BorderPane fx:id="borderPane" StackPane.alignment="TOP_CENTER">
          <center>
-            <Label id="start-label" fx:id="startLabel" stylesheets="@../css/main.css" text="PRESIONA ENTER PARA EMPEZAR" BorderPane.alignment="CENTER" />
+            <Label id="start-label" fx:id="startLabel" stylesheets="@../css/main.css" text="HAZ CLICK PARA EMPEZAR" BorderPane.alignment="CENTER" />
          </center>
          <StackPane.margin>
             <Insets />
