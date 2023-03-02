@@ -26,6 +26,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -394,8 +395,16 @@ public class PlayController implements Initializable {
 		if (result.get() == buttonPlayAgain) {
 			nuevaPartida();
 		} else {
-			Stage stage = (Stage) closeButton.getScene().getWindow();
-			stage.close();
+		    TextInputDialog dialog = new TextInputDialog("");
+		    dialog.setTitle("Salir del juego");
+		    dialog.setHeaderText("Introduce tu nombre de usuario:");
+		    dialog.setContentText("Nombre de usuario:");
+		    Optional<String> userName = dialog.showAndWait();
+		    if (userName.isPresent()) {
+		        String nombreUsuario = userName.get();
+		        Stage stage = (Stage) closeButton.getScene().getWindow();
+		        stage.close();
+		    }
 		}
 	}
 
