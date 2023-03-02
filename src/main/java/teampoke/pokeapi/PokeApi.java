@@ -46,7 +46,7 @@ public class PokeApi {
 	 */
 	public Pokemon getPokemon(String name) throws Exception {
 		Pokemon pokemon = new Pokemon();
-		String tipoPrimario, tipoSecundario;
+		String tipoPrimario, tipoSecundario, generacion;
 		int peso, altura, numPokedex;
 		boolean evoluciona = false, preevoluciona = false;
 		Image img;
@@ -79,6 +79,8 @@ public class PokeApi {
 
 		numPokedex = pokemonapi.getNumPokedex();
 		pokemon.setNumPokemon(numPokedex);
+		
+		
 
 		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
 		pokemon.setImagenPokemon(img);
@@ -97,10 +99,7 @@ public class PokeApi {
 			pokemon.setPreevoPokemon(preevoluciona);
 		}
 
-		if (poSpecies.getEvolTo() != null) {
-			evoluciona = true;
-			pokemon.setEvoPokemon(evoluciona);
-		}
+		
 
 		/*
 		 * Manera de evolucionar
@@ -114,6 +113,41 @@ public class PokeApi {
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
 
+
+//		if (evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName() == pokemon.getNombrePokemon()) {
+//			System.out.println(pokemon.getNombrePokemon());
+//			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
+//			evoluciona = true;
+//			pokemon.setEvoPokemon(evoluciona);
+//		} else {
+//			evoluciona = false;
+//			pokemon.setEvoPokemon(evoluciona);
+//			System.out.println(pokemon.getNombrePokemon());
+//			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
+//		}
+		
+		if (evo != null && evo.getChain().getEvolvesTo().get(0).getEvolvesTo().size() > 0 ){
+			
+			System.out.println(name);
+			System.out.println("Evoluion: "+evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName());
+			
+			if(!evo.getChain().getEvolvesTo().get(0).getEvolvesTo().get(0).getSpecies().getName().equals(pokemon.getNombrePokemon()) ) {
+				evoluciona = true;
+				pokemon.setEvoPokemon(evoluciona);
+			} else {
+				evoluciona = false;
+				pokemon.setEvoPokemon(evoluciona);
+			}
+			
+			
+		} else {
+			evoluciona = false;
+			System.out.println("falso");
+			pokemon.setEvoPokemon(evoluciona);
+			System.out.println(pokemon.getNombrePokemon());
+		}
+		
+		
 		System.out.println(maneraDeEvolucion(evo));
 
 		return pokemon;

@@ -161,8 +161,6 @@ public class Pokemon {
 	public final void setImagenPokemon(final Image imagenPokemon) {
 		this.imagenPokemonProperty().set(imagenPokemon);
 	}
-	
-	
-	
+		
 	
 }
