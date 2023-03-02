@@ -302,7 +302,22 @@ public class PlayController implements Initializable {
 
 		return pokemonAdivinado;
 		
-		
+//		if (adivinado) {
+//			Alert alert = new Alert(AlertType.CONFIRMATION);
+//			alert.setTitle("¡Enhorabuena!");
+//			alert.setHeaderText("¡Has ganado!");
+//			alert.setContentText("¿Quieres volver a jugar?");
+//			ButtonType buttonPlayAgain = new ButtonType("Jugar de nuevo");
+//			ButtonType buttonQuit = new ButtonType("Salir");
+//			alert.getButtonTypes().setAll(buttonPlayAgain, buttonQuit);
+//			Optional<ButtonType> result = alert.showAndWait();
+//			if (result.get() == buttonPlayAgain) {
+//				reiniciarJuego();
+//			} else {
+//				Stage stage = (Stage) closeButton.getScene().getWindow();
+//				stage.close();
+//			}
+//		}
 		
 	}
 
