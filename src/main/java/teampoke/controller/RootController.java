@@ -29,7 +29,7 @@ import teampoke.app.App;
 
 /**
  * 
- * 
+ * Clase gestora inicial del proyecto
  *
  */
 public class RootController implements Initializable {
@@ -68,7 +68,7 @@ public class RootController implements Initializable {
 	private BorderPane borderPane;
 
 	/**
-	 * 
+	 * Constructor principal de la clase
 	 */
 	public RootController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
@@ -80,6 +80,13 @@ public class RootController implements Initializable {
 		}
 	}
 
+	/**
+	 * Carga el video de fondo y se le asigna a la vista.
+	 * Además se configura el video para que se reproduzca indefinidamente.
+	 * También bindea la altura y anchura del video a las del view para que sea responsive.
+	 * Por último se le da una animación al texto que aparece al ejecutar la aplicación
+	 */
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -114,16 +121,20 @@ public class RootController implements Initializable {
 
 	}
 
+	/**
+	 * Devuelve la vista principal
+	 * @return StackPane instancia del StackPane asociado
+	 */
 	public StackPane getView() {
 		return view;
 	}
 
+	/**
+	 * Al clicar sobre la escena cambia a la vista de la partida
+	 * @param event
+	 */
 	@FXML
 	void onMousePressed(MouseEvent event) {
-		cambiarEscena();
-	}
-
-	public void onEnterPressed() {
 		cambiarEscena();
 	}
 
@@ -149,6 +160,10 @@ public class RootController implements Initializable {
 		stage.setIconified(true);
 	}
 
+	/**
+	 * Cambia la escena de inicio por la de la partida.
+	 * Además le asigna una imagen al cursor
+	 */
 	public void cambiarEscena() {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));

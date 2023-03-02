@@ -40,6 +40,12 @@ import teampoke.component.PokeInfoComponent;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.PokeApi;
 
+/**
+ * 
+ * Clase gestora de la ventana de la partida
+ *
+ */
+
 public class PlayController implements Initializable {
 
 	// model
@@ -85,6 +91,11 @@ public class PlayController implements Initializable {
 	@FXML
 	private StackPane view;
 
+	/**
+	 * Constructor principal de la clase.
+	 * 
+	 */
+	
 	public PlayController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 		loader.setController(this);
@@ -95,6 +106,14 @@ public class PlayController implements Initializable {
 		}
 	}
 
+	
+	/**
+	 * Carga el video de fondo y se le asigna a la vista.
+	 * Además se configura el video para que se reproduzca indefinidamente.
+	 * También bindea la altura y anchura del video a las del view para que sea responsive.
+	 * Además contiene los bindings necesarios para el funcionamiento de la partida
+	 */
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -153,10 +172,18 @@ public class PlayController implements Initializable {
 
 	}
 
+	/**
+	 * Devuelve la vista principal
+	 * @return StackPane instancia del StackPane asociado
+	 */
 	public StackPane getView() {
 		return view;
 	}
 
+	/**
+	 * Método que se encarga de elegir al Pokémon que el jugador tiene que adivinar
+	 * @throws Exception
+	 */
 	private void elegirPokemon() throws Exception {
 
 		pokemonOculto = pokeapi.getPokemon(pokemonList.get((int) Math.floor(Math.random() * pokemonList.getSize())));
@@ -164,6 +191,10 @@ public class PlayController implements Initializable {
 
 	}
 
+	/**
+	 * Añade los Pokémon conseguidos a través de PokeApi a la lista
+	 * @throws IOException
+	 */
 	private void cargarListaPokemon() throws IOException {
 		pokemonList.addAll(pokeapi.getListPokemons());
 	}
@@ -190,6 +221,13 @@ public class PlayController implements Initializable {
 		stage.setIconified(true);
 	}
 
+	/**
+	 * Método asociado al botón de enviar un Pokémon
+	 * En función de si el Pokémon ha sido adivinado o no cambia el texto de los label
+	 * del componente del Pokémon
+	 * @param event 
+	 * @throws Exception
+	 */
 	@FXML
 	void onSendPokemon(ActionEvent event) throws Exception {
 
@@ -234,6 +272,9 @@ public class PlayController implements Initializable {
 		
 	}
 
+	/**
+	 * Se resetea la lista para elegir a un nuevo Pokémon
+	 */
 	private void nuevaPartida() {
 		try {
 			
@@ -248,6 +289,14 @@ public class PlayController implements Initializable {
 		
 	}
 
+	/**
+	 * 
+	 * Método encargado de devolver si el Pokémon ha sido adivinado y cambiar 
+	 * el css del componente de ese Pokémon
+	 * @param pokemon Pokémon enviado por el jugador
+	 * @param pokemonEnviadoInfo componente del Pokémon ha modificar
+	 * @return boolean si el jugador ha adivinado el Pokémon o no
+	 */
 	private boolean pokemonAdivinado(Pokemon pokemon, PokeInfoComponent pokemonEnviadoInfo) {
 		
 		boolean pokemonAdivinado;
@@ -329,6 +378,10 @@ public class PlayController implements Initializable {
 		
 	}
 	
+	/**
+	 * Cuando el jugador adivina el Pokémon
+	 * se abre la ventana que le da la opción de seguir jugando o terminar la partida
+	 */
 	private void ventanaPokemonAdivinado() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("¡Enhorabuena!");

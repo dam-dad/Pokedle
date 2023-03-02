@@ -10,7 +10,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import teampoke.controller.RootController;
-
+/**
+ * 
+ * Clase que se encarga de la configuración inical
+ *
+ */
 public class App extends Application {
 
 	RootController rootController = new RootController();
@@ -18,6 +22,10 @@ public class App extends Application {
 	public static Stage primaryStage; 
 	public static Scene scene;
 	
+	/**
+	 * Método que realiza la ejecución principal de la aplicación
+	 * @throws IOException si se produce un error al cargar la vista
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -32,18 +40,6 @@ public class App extends Application {
 		scene.setCursor(new ImageCursor(image));
 		primaryStage.show();
 		
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				
-				if(event.getCode().toString() == "ENTER") {
-					rootController.onEnterPressed();
-				}
-				
-			}
-			
-		});
 		
 	}
 
