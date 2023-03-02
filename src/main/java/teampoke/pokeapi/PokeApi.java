@@ -2,7 +2,9 @@ package teampoke.pokeapi;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javafx.scene.image.Image;
@@ -52,16 +54,16 @@ public class PokeApi {
 		Response<PokemonApi> response = service.getPokemonInfo(name).execute();
 		if (response.code() != 200)
 			throw new Exception(response.errorBody().string());
-//		getEvo(response.body().getId());
+		// getEvo(response.body().getId());
 		PokemonApi pokemonapi = response.body();
 
 		pokemon.setNombrePokemon(name);
 
-		tipoPrimario = pokemonapi.getTypes().get(0).getType().getName();
+		tipoPrimario = tipoEnEspañol(pokemonapi.getTypes().get(0).getType().getName());
 		pokemon.setTipoPrimPokemon(tipoPrimario);
 
 		if (pokemonapi.getTypes().size() > 1) {
-			tipoSecundario = pokemonapi.getTypes().get(1).getType().getName();
+			tipoSecundario = tipoEnEspañol(pokemonapi.getTypes().get(1).getType().getName());
 			pokemon.setTipoSecPokemon(tipoSecundario);
 		} else {
 			tipoSecundario = null;
@@ -77,8 +79,8 @@ public class PokeApi {
 		numPokedex = pokemonapi.getNumPokedex();
 		pokemon.setNumPokemon(numPokedex);
 
-		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
-		pokemon.setImagenPokemon(img);
+		// img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
+		// pokemon.setImagenPokemon(img);
 
 		parts = pokemonapi.getSpecies().getUrl().split("/");
 
@@ -111,9 +113,12 @@ public class PokeApi {
 		Response<EvolutionChain> response3 = service.getChain(id).execute();
 		EvolutionChain evo = response3.body();
 
-//		for (int i = 0; i < evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
-//			System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
-//		}
+		System.out.println(maneraDeEvolucion(evo));
+
+		// for (int i = 0; i <
+		// evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
+		// System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
+		// }
 
 		// chain.getEvolvesTo().get(0).getEvolutionDetails();
 
@@ -126,20 +131,67 @@ public class PokeApi {
 	}
 
 	public ArrayList<String> getListPokemons() throws IOException {
-		int maxPokemons =1008;
+		int maxPokemons = 1008;
 		ListPokemon listPokemon;
 		ArrayList<String> arrayListaPokemons = new ArrayList<>();
 
-		Response<ListPokemon> response = service.getListPokemon(1).execute();
-//		maxPokemons = response.body().getNumPokemons();
-		response = service.getListPokemon(maxPokemons).execute();
+		// Para automatizar coger el listado completo
+		// Response<ListPokemon> response = service.getListPokemon(1).execute();
+
+		Response<ListPokemon> response = service.getListPokemon(maxPokemons).execute();
 		listPokemon = response.body();
 		for (int i = 0; i < maxPokemons; i++) {
 			arrayListaPokemons.add(listPokemon.getPokemons().get(i).getName());
 		}
 		return arrayListaPokemons;
-
 	}
-	
+
+	private String tipoEnEspañol(String type) {
+		Map<String, String> tipoEnEspañol = new HashMap<>();
+		tipoEnEspañol.put("normal", "normal");
+		tipoEnEspañol.put("fighting", "lucha");
+		tipoEnEspañol.put("flying", "volador");
+		tipoEnEspañol.put("poison", "veneno");
+		tipoEnEspañol.put("ground", "tierra");
+		tipoEnEspañol.put("rock", "roca");
+		tipoEnEspañol.put("bug", "bicho");
+		tipoEnEspañol.put("ghost", "fantasma");
+		tipoEnEspañol.put("steel", "acero");
+		tipoEnEspañol.put("fire", "fuego");
+		tipoEnEspañol.put("water", "agua");
+		tipoEnEspañol.put("grass", "planta");
+		tipoEnEspañol.put("electric", "eléctrico");
+		tipoEnEspañol.put("psychic", "psíquico");
+		tipoEnEspañol.put("ice", "hielo");
+		tipoEnEspañol.put("dragon", "dragón");
+		tipoEnEspañol.put("dark", "siniestro");
+		tipoEnEspañol.put("fairy", "hada");
+
+		return tipoEnEspañol.get(type);
+	}
+
+	private String maneraDeEvolucion(EvolutionChain evoChain) {
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getGender();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getHeldItem();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getItem();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMove();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMoveType();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getLocation();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinAffection();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinBeauty();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinHappiness();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getNeedsOverworldRain();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartySpecies();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartyType();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getRelativePhysicalStats();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTimeOfDay();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTradeSpecies();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTrigger();
+		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTurnUpsideDown();
+
+		return evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).toString();
+	}
+
 
 }
