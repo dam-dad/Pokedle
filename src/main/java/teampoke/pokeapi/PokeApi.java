@@ -150,6 +150,9 @@ public class PokeApi {
 			evoluciona = false;
 			pokemon.setEvoPokemon(evoluciona);
 		}
+		
+		//AQUI TIENES LA VIDA BASE
+		pokemonapi.getStat().get(0).getBaseStat();
 
 		return pokemon;
 	}
