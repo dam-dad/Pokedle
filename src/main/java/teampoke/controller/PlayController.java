@@ -302,6 +302,8 @@ public class PlayController implements Initializable {
 
 		return pokemonAdivinado;
 		
+		
+		
 	}
 
 }

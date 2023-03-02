@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -16,17 +17,10 @@
 <StackPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1160.0" stylesheets="@../css/play.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane>
-         <top>
-            <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../images/pokedle.png" />
-               </image>
-            </ImageView>
-         </top>
          <center>
             <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" spacing="5.0">
+                  <HBox alignment="CENTER" prefHeight="58.0" prefWidth="1160.0" spacing="5.0">
                      <children>
                         <TextField fx:id="pokemonTextField" maxWidth="300.0" prefHeight="50.0" promptText="Introduce el nombre de un Pokémon" HBox.hgrow="ALWAYS">
                            <HBox.margin>
@@ -40,6 +34,9 @@
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
                   <VBox fx:id="pokeInfo" alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
@@ -65,6 +62,51 @@
                </children>
             </VBox>
          </center>
+         <top>
+            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+               <children>
+                  <ButtonBar fx:id="toolBar" prefHeight="46.0" prefWidth="1140.0">
+                     <buttons>
+                        <Button fx:id="minButton" mnemonicParsing="false" onMouseClicked="#onMin" stylesheets="@../css/main.css">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/min.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="maxButton" mnemonicParsing="false" onMouseClicked="#onMax" stylesheets="@../css/main.css">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/max.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="closeButton" mnemonicParsing="false" onMouseClicked="#onClose" stylesheets="@../css/main.css">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </buttons>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </ButtonBar>
+                  <ImageView fx:id="logo" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pokedle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </top>
       </BorderPane>
       <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" />
    </children>
