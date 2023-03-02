@@ -27,6 +27,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -79,6 +80,9 @@ public class PlayController implements Initializable {
 	private ListView<HBox> pokemonListView;
 
 	@FXML
+    private BorderPane playBorderPane;
+	
+	@FXML
 	private StackPane view;
 
 	public PlayController() {
@@ -100,13 +104,12 @@ public class PlayController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		// para el video de fondo
 		Media media = new Media(getClass().getResource("/media/fondo.mp4").toString());
 		MediaPlayer player = new MediaPlayer(media);
 		mediaView.setMediaPlayer(player);
 		mediaView.toBack(); // para que el video esté en el fondo
-		player.setVolume(0);
 		player.setAutoPlay(true);
 		player.setCycleCount(MediaPlayer.INDEFINITE); // para que el video esté en bucle
 
@@ -116,11 +119,14 @@ public class PlayController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
-		// archivo de audio
-		Media audioFile = new Media(getClass().getResource("/media/music_victory.mp3").toString());
+//		// archivo de audio
+		Media audioFile = new Media(getClass().getResource("/media/opening.mp3").toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+		mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+//		mediaPlayer.setVolume(1);
+
+		
 		
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
@@ -151,14 +157,14 @@ public class PlayController implements Initializable {
 		return view;
 	}
 
-	public void elegirPokemon() throws Exception {
+	private void elegirPokemon() throws Exception {
 
 		pokemonOculto = pokeapi.getPokemon(pokemonList.get((int) Math.floor(Math.random() * pokemonList.getSize())));
 		System.out.println(pokemonOculto.getNombrePokemon());
 
 	}
 
-	public void cargarListaPokemon() throws IOException {
+	private void cargarListaPokemon() throws IOException {
 		pokemonList.addAll(pokeapi.getListPokemons());
 	}
 	
@@ -229,8 +235,10 @@ public class PlayController implements Initializable {
 
 	private void nuevaPartida() {
 		try {
-			elegirPokemon();
+			
+			pokemonList.removeAll(pokemonList);
 			cargarListaPokemon();
+			elegirPokemon();
 			pokemonInfoList.removeAll(pokemonInfoList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -239,7 +247,7 @@ public class PlayController implements Initializable {
 		
 	}
 
-	public boolean pokemonAdivinado(Pokemon pokemon, PokeInfoComponent pokemonEnviadoInfo) {
+	private boolean pokemonAdivinado(Pokemon pokemon, PokeInfoComponent pokemonEnviadoInfo) {
 		
 		boolean pokemonAdivinado;
 

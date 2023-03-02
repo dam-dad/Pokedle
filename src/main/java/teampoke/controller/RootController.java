@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.ImageCursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -23,7 +24,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import teampoke.app.App;
 
@@ -34,7 +34,7 @@ public class RootController implements Initializable {
 	PlayController playController = new PlayController();
 
 	// view
-	
+
 	@FXML
 	private Button closeButton;
 
@@ -90,6 +90,12 @@ public class RootController implements Initializable {
 		mediaView.fitHeightProperty().bind(view.heightProperty());
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
+		// archivo de audio
+//		Media audioFile = new Media(getClass().getResource("/media/music_victory.mp3").toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//		mediaPlayer.setVolume(1);
+//		mediaPlayer.play();
 
 		// animación del texto
 		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), startLabel);
@@ -112,7 +118,7 @@ public class RootController implements Initializable {
 	public void onEnterPressed() {
 		cambiarEscena();
 	}
-	
+
 	@FXML
 	void onClose(MouseEvent event) {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -135,17 +141,15 @@ public class RootController implements Initializable {
 		stage.setIconified(true);
 	}
 
-
 	public void cambiarEscena() {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 
 		loader.setController(playController);
 		Scene scene = new Scene(playController.getView());
-		
-		Image image = new Image("/images/cursor.png"); 
+		Image image = new Image("/images/cursor.png");
 		scene.setCursor(new ImageCursor(image));
-		
+
 		App.primaryStage.setScene(scene);
 	}
 
