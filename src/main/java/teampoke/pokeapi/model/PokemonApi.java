@@ -43,7 +43,19 @@ public class PokemonApi {
     //Species
     @SerializedName("species")
     private Species species;
+    
+    @SerializedName("stat")
+    private List<Stat> stat;
 	
+
+	public List<Stat> getStat() {
+		return stat;
+	}
+
+	public void setStat(List<Stat> stat) {
+		this.stat = stat;
+	}
+
 	public List<Type> getTypes() {
 		return types;
 	}
