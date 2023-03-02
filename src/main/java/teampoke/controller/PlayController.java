@@ -130,7 +130,7 @@ public class PlayController implements Initializable {
 	public void elegirPokemon() throws Exception {
 
 		pokemonOculto = pokeapi.getPokemon(pokemonList.get((int) Math.floor(Math.random() * pokemonList.getSize())));
-		System.out.println(pokemonOculto);
+		System.out.println(pokemonOculto.getNombrePokemon());
 
 	}
 
