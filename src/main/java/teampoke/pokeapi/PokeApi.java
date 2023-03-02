@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.model.EvolutionChain;
+import teampoke.pokeapi.model.EvolutionDetail;
 import teampoke.pokeapi.model.ListPokemon;
 import teampoke.pokeapi.model.PokemonApi;
 import teampoke.pokeapi.model.PokemonSpecies;
@@ -67,7 +68,7 @@ public class PokeApi {
 			pokemon.setTipoSecPokemon(tipoSecundario);
 		} else {
 			tipoSecundario = null;
-			pokemon.setTipoSecPokemon("NO");
+			pokemon.setTipoSecPokemon("No tiene");
 		}
 
 		peso = pokemonapi.getWeight();
@@ -79,8 +80,8 @@ public class PokeApi {
 		numPokedex = pokemonapi.getNumPokedex();
 		pokemon.setNumPokemon(numPokedex);
 
-		// img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
-		// pokemon.setImagenPokemon(img);
+		img = new Image(pokemonapi.getSprites().getFrontDefault().toString());
+		pokemon.setImagenPokemon(img);
 
 		parts = pokemonapi.getSpecies().getUrl().split("/");
 
@@ -114,13 +115,6 @@ public class PokeApi {
 		EvolutionChain evo = response3.body();
 
 		System.out.println(maneraDeEvolucion(evo));
-
-		// for (int i = 0; i <
-		// evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().size(); i++) {
-		// System.out.println(evo.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel());
-		// }
-
-		// chain.getEvolvesTo().get(0).getEvolutionDetails();
 
 		return pokemon;
 	}
@@ -171,27 +165,29 @@ public class PokeApi {
 	}
 
 	private String maneraDeEvolucion(EvolutionChain evoChain) {
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getGender();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getHeldItem();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getItem();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMove();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getKnownMoveType();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getLocation();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinAffection();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinBeauty();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinHappiness();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getMinLevel();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getNeedsOverworldRain();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartySpecies();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getPartyType();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getRelativePhysicalStats();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTimeOfDay();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTradeSpecies();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTrigger();
-		evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).getTurnUpsideDown();
+		EvolutionDetail ed = evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0);
+
+		if (!(ed.getGender() == null))
+			ed.getGender();
+		ed.getHeldItem();
+		ed.getItem();
+		ed.getKnownMove();
+		ed.getKnownMoveType();
+		ed.getLocation();
+		ed.getMinAffection();
+		ed.getMinBeauty();
+		ed.getMinHappiness();
+		ed.getMinLevel();
+		ed.getNeedsOverworldRain();
+		ed.getPartySpecies();
+		ed.getPartyType();
+		ed.getRelativePhysicalStats();
+		ed.getTimeOfDay();
+		ed.getTradeSpecies();
+		ed.getTrigger();
+		ed.getTurnUpsideDown();
 
 		return evoChain.getChain().getEvolvesTo().get(0).getEvolutionDetails().get(0).toString();
 	}
-
 
 }

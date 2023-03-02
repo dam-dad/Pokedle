@@ -12,7 +12,7 @@ public class EvolvesTo {
 	private List<EvolutionDetail> evolutionDetails;
 	@SerializedName("evolves_to")
 	@Expose
-	private List<Object> evolvesTo;
+	private List<EvolvesTo> evolvesTo;
 	@SerializedName("is_baby")
 	@Expose
 	private Boolean isBaby;
@@ -28,11 +28,11 @@ public class EvolvesTo {
 	this.evolutionDetails = evolutionDetails;
 	}
 
-	public List<Object> getEvolvesTo() {
+	public List<EvolvesTo> getEvolvesTo() {
 	return evolvesTo;
 	}
 
-	public void setEvolvesTo(List<Object> evolvesTo) {
+	public void setEvolvesTo(List<EvolvesTo> evolvesTo) {
 	this.evolvesTo = evolvesTo;
 	}
 
