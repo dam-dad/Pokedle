@@ -79,6 +79,9 @@
                 <bundleJre>true</bundleJre>
                 <generateInstaller>true</generateInstaller>
                 <platform>windows</platform>
+                <winConfig>
+                	<headerType>console</headerType>
+                </winConfig>
             </configuration>
         </execution>
     </executions>
