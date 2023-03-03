@@ -12,6 +12,17 @@ Cada partida acaba al adivinar el pokemon, dando la posibilidad de volver a juga
 
 ---
 
+## Puntuaciones
+Conoce el sistema de [Puntuaciones](https://github.com/dam-dad/Pokedle/wiki/PUNTUACIONES). 
+
+
+
+## Guía de Instalación
+[Cómo instalar](https://github.com/dam-dad/Pokedle/wiki/INSTALACI%C3%93N). 
+
+---
+
+
 #### Blibliografia
 - [Instalador de fvarrui](https://github.com/fvarrui/JavaPackager)
 - [GlobalStats](https://globalstats.io/)
@@ -21,10 +32,11 @@ Cada partida acaba al adivinar el pokemon, dando la posibilidad de volver a juga
 
 #### Autores 
 - [Ana Mesa](https://github.com/Ana-Mes)
-- [Martín](https://github.com/dragonblack404)
+- [Martín Díaz](https://github.com/dragonblack404)
 - [Lorena Pérez](https://github.com/LorenaPerezDorta)
 
 <img src="./src/main/resources/images/pikachu_sprite.png" width="40" height="40"/>  
+
 
 
 

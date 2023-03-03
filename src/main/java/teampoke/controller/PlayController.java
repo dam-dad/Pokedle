@@ -265,6 +265,7 @@ public class PlayController implements Initializable {
 		} else {
 			pokemonEnviadoInfo.setEvoPokemon("No evoluciona");
 		}
+
 		if(pokemon.isPreevoPokemon()) {
 			pokemonEnviadoInfo.setPreevoPokemon("Tiene preevolución");
 		} else {
