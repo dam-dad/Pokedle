@@ -1,28 +1,34 @@
 package teampoke.tests;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import io.github.fvarrui.globalstats.model.Rank;
+import teampoke.globalstats.GlobalApi;
+import teampoke.globalstats.MarcadorPersonal;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.PokeApi;
 
 public class Test01 {
 
 	public static void main(String[] args) throws Exception {
-		ArrayList<String> listapokemons = new ArrayList<>();
-		
-		// globalApi
-		PokeApi pokeapi = new PokeApi();
-		Pokemon pokemon;
+//		ArrayList<String> listapokemons = new ArrayList<>();
 //		
-		pokemon = pokeapi.getPokemon("charmander");
-		System.out.println(pokemon);
+//		// globalApi
+//		PokeApi pokeapi = new PokeApi();
+//		Pokemon pokemon;
+////		
+//		pokemon = pokeapi.getPokemon("charmander");
+//		System.out.println(pokemon);
 
 		// listapokemons= pokeapi.getListPokemons();
 		// for (String string : listapokemons) {
 		// 	System.out.println(string);
 		// }
 
-
+		
+		List<MarcadorPersonal> leaderboard = GlobalApi.puntuaciones();
+		System.out.println(leaderboard);
 
 	}
 	

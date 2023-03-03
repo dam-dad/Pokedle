@@ -38,7 +38,9 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import teampoke.component.PokeInfoComponent;
+import teampoke.globalstats.GlobalApi;
 import teampoke.model.Pokemon;
+import teampoke.model.Puntuacion;
 import teampoke.pokeapi.PokeApi;
 
 /**
@@ -56,6 +58,8 @@ public class PlayController implements Initializable {
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<String> pokemonList = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private int numeroDePokemonAdivinados;
+	private int numeroIntentos;
+	private Puntuacion punt = new Puntuacion();
 
 	// view
 	
@@ -140,10 +144,10 @@ public class PlayController implements Initializable {
 		mediaView.setPreserveRatio(false); // para que el video pueda deformarse
 
 //		// archivo de audio
-		Media audioFile = new Media(getClass().getResource("/media/opening.mp3").toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
-		mediaPlayer.setAutoPlay(true);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//		Media audioFile = new Media(getClass().getResource("/media/opening.mp3").toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
+//		mediaPlayer.setAutoPlay(true);
+//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 //		mediaPlayer.setVolume(1);
 
 		
@@ -266,10 +270,12 @@ public class PlayController implements Initializable {
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 
 		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
-			
 			ventanaPokemonAdivinado();
-						
+			
+			punt.setPuntuacion(punt.sumarPuntos(numeroIntentos));
 		}
+		
+		numeroIntentos++;
 		
 	}
 
@@ -401,6 +407,7 @@ public class PlayController implements Initializable {
 		    Optional<String> userName = dialog.showAndWait();
 		    if (userName.isPresent()) {
 		        String nombreUsuario = userName.get();
+		        GlobalApi.addPuntuacion(nombreUsuario, punt.getPuntuacion());
 		        Stage stage = (Stage) closeButton.getScene().getWindow();
 		        stage.close();
 		    }
