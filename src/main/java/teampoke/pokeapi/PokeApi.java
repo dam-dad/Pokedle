@@ -164,7 +164,7 @@ public class PokeApi {
 	}
 
 	public ArrayList<String> getListPokemons() throws IOException {
-		int maxPokemons = 1008;
+		int maxPokemons = 386;
 		ListPokemon listPokemon;
 		ArrayList<String> arrayListaPokemons = new ArrayList<>();
 
