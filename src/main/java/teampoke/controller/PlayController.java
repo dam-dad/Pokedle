@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -37,8 +38,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import net.sf.jasperreports.engine.JRException;
 import teampoke.component.PokeInfoComponent;
 import teampoke.globalstats.GlobalApi;
+import teampoke.informe.HighscoreReport;
 import teampoke.model.Pokemon;
 import teampoke.model.Puntuacion;
 import teampoke.pokeapi.PokeApi;
@@ -61,7 +64,7 @@ public class PlayController implements Initializable {
 	private Puntuacion punt = new Puntuacion();
 
 	// view
-	
+
 	@FXML
 	private Button closeButton;
 
@@ -90,8 +93,8 @@ public class PlayController implements Initializable {
 	private ListView<HBox> pokemonListView;
 
 	@FXML
-    private BorderPane playBorderPane;
-	
+	private BorderPane playBorderPane;
+
 	@FXML
 	private StackPane view;
 
@@ -99,7 +102,7 @@ public class PlayController implements Initializable {
 	 * Constructor principal de la clase.
 	 * 
 	 */
-	
+
 	public PlayController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PlayView.fxml"));
 		loader.setController(this);
@@ -110,14 +113,13 @@ public class PlayController implements Initializable {
 		}
 	}
 
-	
 	/**
-	 * Carga el video de fondo y se le asigna a la vista.
-	 * Además se configura el video para que se reproduzca indefinidamente.
-	 * También bindea la altura y anchura del video a las del view para que sea responsive.
-	 * Además contiene los bindings necesarios para el funcionamiento de la partida
+	 * Carga el video de fondo y se le asigna a la vista. Además se configura el
+	 * video para que se reproduzca indefinidamente. También bindea la altura y
+	 * anchura del video a las del view para que sea responsive. Además contiene los
+	 * bindings necesarios para el funcionamiento de la partida
 	 */
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -127,7 +129,7 @@ public class PlayController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		// para el video de fondo
 		Media media = new Media(getClass().getResource("/media/fondo.mp4").toString());
 		MediaPlayer player = new MediaPlayer(media);
@@ -149,8 +151,6 @@ public class PlayController implements Initializable {
 //		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 //		mediaPlayer.setVolume(1);
 
-		
-		
 		// para que la información del Pokémon no se muestre al principio
 		pokeInfo.setVisible(false);
 
@@ -178,6 +178,7 @@ public class PlayController implements Initializable {
 
 	/**
 	 * Devuelve la vista principal
+	 * 
 	 * @return StackPane instancia del StackPane asociado
 	 */
 	public StackPane getView() {
@@ -186,6 +187,7 @@ public class PlayController implements Initializable {
 
 	/**
 	 * Método que se encarga de elegir al Pokémon que el jugador tiene que adivinar
+	 * 
 	 * @throws Exception
 	 */
 	private void elegirPokemon() throws Exception {
@@ -197,51 +199,57 @@ public class PlayController implements Initializable {
 
 	/**
 	 * Añade los Pokémon conseguidos a través de PokeApi a la lista
+	 * 
 	 * @throws IOException
 	 */
 	private void cargarListaPokemon() throws IOException {
 		pokemonList.addAll(pokeapi.getListPokemons());
 	}
-	
+
 	/**
 	 * Cierra la ventana de la aplicación cuando se hace clic en el botón "cerrar".
+	 * 
 	 * @param event el MouseEvent que desencadenó este controlador de eventos
 	 */
 	@FXML
 	void onClose(MouseEvent event) {
-	    Stage stage = (Stage) closeButton.getScene().getWindow();
-	    stage.close();
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		stage.close();
 	}
 
 	/**
-	 * Maximiza o restaura la ventana de la aplicación cuando se hace clic en el botón "maximizar".
+	 * Maximiza o restaura la ventana de la aplicación cuando se hace clic en el
+	 * botón "maximizar".
+	 * 
 	 * @param event el MouseEvent que desencadenó este controlador de eventos
 	 */
 	@FXML
 	void onMax(MouseEvent event) {
-	    Stage stage = (Stage) maxButton.getScene().getWindow();
-	    if (stage.isMaximized()) {
-	        stage.setMaximized(false);
-	    } else {
-	        stage.setMaximized(true);
-	    }
+		Stage stage = (Stage) maxButton.getScene().getWindow();
+		if (stage.isMaximized()) {
+			stage.setMaximized(false);
+		} else {
+			stage.setMaximized(true);
+		}
 	}
 
 	/**
-	 * Minimiza la ventana de la aplicación cuando se hace clic en el botón "minimizar".
+	 * Minimiza la ventana de la aplicación cuando se hace clic en el botón
+	 * "minimizar".
+	 * 
 	 * @param event el MouseEvent que desencadenó este controlador de eventos
 	 */
 	@FXML
 	void onMin(MouseEvent event) {
-	    Stage stage = (Stage) minButton.getScene().getWindow();
-	    stage.setIconified(true);
+		Stage stage = (Stage) minButton.getScene().getWindow();
+		stage.setIconified(true);
 	}
 
 	/**
-	 * Método asociado al botón de enviar un Pokémon
-	 * En función de si el Pokémon ha sido adivinado o no cambia el texto de los label
-	 * del componente del Pokémon
-	 * @param event 
+	 * Método asociado al botón de enviar un Pokémon En función de si el Pokémon ha
+	 * sido adivinado o no cambia el texto de los label del componente del Pokémon
+	 * 
+	 * @param event
 	 * @throws Exception
 	 */
 	@FXML
@@ -260,18 +268,18 @@ public class PlayController implements Initializable {
 		pokemonEnviadoInfo.setPesoPokemon(Math.round(pokemon.getPesoPokemon() * 0.1 * 100d) / 100d + " kg");
 		pokemonEnviadoInfo.setAlturaPokemon(Math.round(pokemon.getAlturaPokemon() * 0.1 * 100d) / 100d + " m");
 		pokemonEnviadoInfo.setNumPokemon(pokemon.getNumPokemon());
-		if(pokemon.isEvoPokemon()) {
+		if (pokemon.isEvoPokemon()) {
 			pokemonEnviadoInfo.setEvoPokemon("Evoluciona");
 		} else {
 			pokemonEnviadoInfo.setEvoPokemon("No evoluciona");
 		}
 
-		if(pokemon.isPreevoPokemon()) {
+		if (pokemon.isPreevoPokemon()) {
 			pokemonEnviadoInfo.setPreevoPokemon("Tiene preevolución");
 		} else {
 			pokemonEnviadoInfo.setPreevoPokemon("No tiene preevolución");
 		}
-		
+
 		pokemonEnviadoInfo.setVidaBasePokemon(pokemon.getVidaBasePokemon());
 
 		pokemonList.remove(pokemon.getNombrePokemon());
@@ -280,13 +288,13 @@ public class PlayController implements Initializable {
 
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 
-		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
+		if (pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
 			punt.setPuntuacion(punt.sumarPuntos(numeroIntentos));
 			ventanaPokemonAdivinado();
 		}
-		
+
 		numeroIntentos++;
-		
+
 	}
 
 	/**
@@ -294,27 +302,28 @@ public class PlayController implements Initializable {
 	 */
 	private void nuevaPartida() {
 		try {
-			
+
 			pokemonList.removeAll(pokemonList);
 			cargarListaPokemon();
 			elegirPokemon();
 			pokemonInfoList.removeAll(pokemonInfoList);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 	}
 
 	/**
 	 * 
-	 * Método encargado de devolver si el Pokémon ha sido adivinado y cambiar 
-	 * el css del componente de ese Pokémon
-	 * @param pokemon Pokémon enviado por el jugador
+	 * Método encargado de devolver si el Pokémon ha sido adivinado y cambiar el css
+	 * del componente de ese Pokémon
+	 * 
+	 * @param pokemon            Pokémon enviado por el jugador
 	 * @param pokemonEnviadoInfo componente del Pokémon ha modificar
 	 * @return boolean si el jugador ha adivinado el Pokémon o no
 	 */
 	private boolean pokemonAdivinado(Pokemon pokemon, PokeInfoComponent pokemonEnviadoInfo) {
-		
+
 		boolean pokemonAdivinado;
 
 		if (pokemonOculto.getNumPokemon() == pokemon.getNumPokemon()) {
@@ -328,9 +337,8 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("bien");
 			pokemonAdivinado = true;
 
-			
 		} else {
-			
+
 			pokemonAdivinado = false;
 
 			if (pokemon.getTipoPrimPokemon().equals(pokemonOculto.getTipoPrimPokemon())) {
@@ -379,25 +387,26 @@ public class PlayController implements Initializable {
 			} else {
 				pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("mal");
 			}
-			
+
 			if (pokemonEnviado.getVidaBasePokemon() < (pokemonOculto.getVidaBasePokemon())) {
 				pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("mal-arriba");
 			} else {
 				pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("mal-abajo");
 			}
-			
+
 		}
 
 		return pokemonAdivinado;
-		
-		
+
 	}
-	
+
 	/**
-	 * Cuando el jugador adivina el Pokémon
-	 * se abre la ventana que le da la opción de seguir jugando o terminar la partida
+	 * Cuando el jugador adivina el Pokémon se abre la ventana que le da la opción
+	 * de seguir jugando o terminar la partida
+	 * @throws IOException 
+	 * @throws JRException 
 	 */
-	private void ventanaPokemonAdivinado() {
+	private void ventanaPokemonAdivinado() throws JRException, IOException {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("¡Enhorabuena!");
 		alert.setHeaderText("¡Has ganado!");
@@ -409,17 +418,29 @@ public class PlayController implements Initializable {
 		if (result.get() == buttonPlayAgain) {
 			nuevaPartida();
 		} else {
-		    TextInputDialog dialog = new TextInputDialog("");
-		    dialog.setTitle("Salir del juego");
-		    dialog.setHeaderText("Introduce tu nombre de usuario:");
-		    dialog.setContentText("Nombre de usuario:");
-		    Optional<String> userName = dialog.showAndWait();
-		    if (userName.isPresent()) {
-		        String nombreUsuario = userName.get();
-		        GlobalApi.addPuntuacion(nombreUsuario, punt.getPuntuacion());
-		        Stage stage = (Stage) closeButton.getScene().getWindow();
-		        stage.close();
-		    }
+			TextInputDialog dialog = new TextInputDialog("");
+			dialog.setTitle("Salir del juego");
+			dialog.setHeaderText("Introduce tu nombre de usuario:");
+			dialog.setContentText("Nombre de usuario:");
+			// Deshabilitar el botón "OK" hasta que se ingrese algún texto en el campo de
+			// entrada de texto
+			Node okButton = dialog.getDialogPane().lookupButton(ButtonType.OK);
+			okButton.setDisable(true);
+			TextField inputField = dialog.getEditor();
+			inputField.textProperty().addListener((observable, oldValue, newValue) -> {
+				okButton.setDisable(newValue.trim().isEmpty());
+			});
+
+			dialog.getDialogPane().getButtonTypes().remove(ButtonType.CANCEL);
+
+			Optional<String> userName = dialog.showAndWait();
+			if (userName.isPresent()) {
+				String nombreUsuario = userName.get();
+				GlobalApi.addPuntuacion(nombreUsuario, punt.getPuntuacion());
+				Stage stage = (Stage) closeButton.getScene().getWindow();
+				HighscoreReport.generarPdf();
+				stage.close();
+			}
 		}
 	}
 
