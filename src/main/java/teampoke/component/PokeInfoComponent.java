@@ -17,6 +17,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import teampoke.model.Pokemon;
 
+/**
+ * 
+ * Clase del componente que muestra la información de los Pokémon en la interfaz
+ *
+ */
+
 public class PokeInfoComponent extends ListCell<Pokemon> implements Initializable {
 
 	// model
