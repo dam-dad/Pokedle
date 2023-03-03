@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>teamPoke</groupId>
 	<artifactId>Pokedle</artifactId>
@@ -60,29 +59,32 @@
 			<version>0.1.0</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
-    <groupId>io.github.fvarrui</groupId>
-    <artifactId>javapackager</artifactId>
-    <version>1.7.0</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals>
-                <goal>package</goal>
-            </goals>
-            <configuration>
-                <!-- mandatory -->
-                <mainClass>${exec.mainClass}</mainClass>
-                <bundleJre>true</bundleJre>
-                <generateInstaller>true</generateInstaller>
-                <platform>windows</platform>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.7.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<!-- mandatory -->
+							<mainClass>${exec.mainClass}</mainClass>
+							<bundleJre>true</bundleJre>
+							<generateInstaller>true</generateInstaller>
+							<platform>windows</platform>
+							<winConfig>
+								<icoFile>geek.ico</icoFile>
+							</winConfig>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
