@@ -35,13 +35,16 @@
                                     <HBox alignment="CENTER" prefHeight="23.0" prefWidth="118.0" spacing="5">
                                        <children>
                                           <Label text="Volumen:" />
-                                          <Slider fx:id="sliderVolumen" max="1.0" min="0.0" value="0.5" />
+                                          <Slider fx:id="volumenSlider" max="1.0" min="0.0" value="0.5" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                               <Button fx:id="muteVolumen" onAction="#silenciar" prefHeight="26.0" prefWidth="253.0" stylesheets="@../css/main.css" text="Mute" />
                           </buttons>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
                         </ButtonBar>
                         <ButtonBar fx:id="toolBar" prefHeight="100.0" prefWidth="705.0">
                           <buttons>
@@ -76,7 +79,7 @@
                         </ButtonBar>
                      </children>
                   </HBox>
-                  <ImageView fx:id="logo" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logo" fitWidth="296.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/pokedle.png" />
                      </image>

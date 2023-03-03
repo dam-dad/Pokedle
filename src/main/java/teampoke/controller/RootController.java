@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -65,7 +67,12 @@ public class RootController implements Initializable {
 	private BorderPane borderPane;
 	
 	@FXML
-    private Button volumenButton;
+    private Button muteVolumen;
+
+    @FXML
+    private Slider volumenSlider;
+    
+    private double volumenActual = 0.5;
 
 
 	public RootController() {
@@ -81,10 +88,6 @@ public class RootController implements Initializable {
 	Media audioFile = new Media(getClass().getResource("/media/Opening.mp3").toString());
 	MediaPlayer mediaPlayer = new MediaPlayer(audioFile);
 	
-	public MediaPlayer getMediaPlayer() {
-	    return mediaPlayer;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -111,9 +114,10 @@ public class RootController implements Initializable {
 		fadeTransition.play();
 
 		// archivo de audio
-//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-//		mediaPlayer.play();
-//		
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
+		mediaPlayer.volumeProperty().bindBidirectional(volumenSlider.valueProperty());
+		
 
 
 	}
@@ -154,21 +158,24 @@ public class RootController implements Initializable {
 	}
 	
 	@FXML
-	void onVolumenButton(MouseEvent event) {
-		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VolumenView.fxml"));
-	        Parent root = loader.load();
-	        Scene scene = new Scene(root);
-	        Stage stage = new Stage();
-	        stage.initStyle(StageStyle.UNDECORATED);
-	        stage.initModality(Modality.APPLICATION_MODAL); // establecer modalidad
-	        stage.setResizable(false); // no redimensionable
-	        stage.setScene(scene);
-	        stage.showAndWait(); // esperar hasta que se cierre la ventana
+	void silenciar(ActionEvent event) {
+		
+		// Silenciar o restaurar el volumen.
+		if (mediaPlayer.isMute()) {
+			mediaPlayer.setMute(false);
+			volumenSlider.setValue(volumenActual); // Restaurar el valor del volumen actual.
+		} else {
+			volumenActual = volumenSlider.getValue();
+			mediaPlayer.setMute(true);
+			volumenSlider.setValue(0.0); // Establecer el valor del volumen en 0.
+		}
+	}
+	
+	@FXML
+	void subirVolumen(ActionEvent event) {
+		    mediaPlayer.setVolume(volumenSlider.getValue());
+		
 
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
 	}
 
 	public void cambiarEscena() {
