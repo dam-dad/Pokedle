@@ -138,28 +138,39 @@ public class RootController implements Initializable {
 		cambiarEscena();
 	}
 
+	/**
+	 * Cierra la ventana de la aplicación cuando se hace clic en el botón "cerrar".
+	 * @param event el MouseEvent que desencadenó este controlador de eventos
+	 */
 	@FXML
 	void onClose(MouseEvent event) {
-		Stage stage = (Stage) closeButton.getScene().getWindow();
-		stage.close();
+	    Stage stage = (Stage) closeButton.getScene().getWindow();
+	    stage.close();
 	}
 
+	/**
+	 * Maximiza o restaura la ventana de la aplicación cuando se hace clic en el botón "maximizar".
+	 * @param event el MouseEvent que desencadenó este controlador de eventos
+	 */
 	@FXML
 	void onMax(MouseEvent event) {
-		Stage stage = (Stage) maxButton.getScene().getWindow();
-		if (stage.isMaximized()) {
-			stage.setMaximized(false);
-		} else {
-			stage.setMaximized(true);
-		}
+	    Stage stage = (Stage) maxButton.getScene().getWindow();
+	    if (stage.isMaximized()) {
+	        stage.setMaximized(false);
+	    } else {
+	        stage.setMaximized(true);
+	    }
 	}
 
+	/**
+	 * Minimiza la ventana de la aplicación cuando se hace clic en el botón "minimizar".
+	 * @param event el MouseEvent que desencadenó este controlador de eventos
+	 */
 	@FXML
 	void onMin(MouseEvent event) {
-		Stage stage = (Stage) minButton.getScene().getWindow();
-		stage.setIconified(true);
+	    Stage stage = (Stage) minButton.getScene().getWindow();
+	    stage.setIconified(true);
 	}
-
 	/**
 	 * Cambia la escena de inicio por la de la partida.
 	 * Además le asigna una imagen al cursor
