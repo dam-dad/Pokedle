@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -27,12 +28,22 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar prefHeight="100.0" prefWidth="425.0">
                           <buttons>
-                              <Button fx:id="volumenButton" mnemonicParsing="false" onMouseClicked="#onVolumenButton" stylesheets="@../css/main.css" text="Vol" />
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="247.0" spacing="5">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="23.0" prefWidth="118.0" spacing="5">
+                                       <children>
+                                          <Label text="Volumen:" />
+                                          <Slider fx:id="sliderVolumen" max="1.0" min="0.0" value="0.5" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="muteVolumen" onAction="#silenciar" prefHeight="26.0" prefWidth="253.0" stylesheets="@../css/main.css" text="Mute" />
                           </buttons>
                         </ButtonBar>
-                        <ButtonBar fx:id="toolBar" prefHeight="46.0" prefWidth="1140.0">
+                        <ButtonBar fx:id="toolBar" prefHeight="100.0" prefWidth="705.0">
                           <buttons>
                             <Button fx:id="minButton" mnemonicParsing="false" onMouseClicked="#onMin" stylesheets="@../css/main.css">
                                  <graphic>
