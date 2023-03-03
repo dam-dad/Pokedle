@@ -44,7 +44,7 @@ public class PokemonApi {
     @SerializedName("species")
     private Species species;
     
-    @SerializedName("stat")
+    @SerializedName("stats")
     private List<Stat> stat;
 	
 
