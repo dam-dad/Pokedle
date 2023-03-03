@@ -40,7 +40,7 @@ public class HighscoreReport {
 		
 		// mapa de parámetros para el informe
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("autor", "Dragon Black"); 
+		parameters.put("autor", "Pokedle Team"); 
 		
 		// generamos el informe (combinamos el informe compilado con los datos) 
         JasperPrint print  = JasperFillManager.fillReport(report, parameters, new JRBeanCollectionDataSource(puntuaciones));
