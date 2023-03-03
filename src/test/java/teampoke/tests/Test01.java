@@ -1,13 +1,10 @@
 package teampoke.tests;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.github.fvarrui.globalstats.model.Rank;
 import teampoke.globalstats.GlobalApi;
 import teampoke.globalstats.MarcadorPersonal;
-import teampoke.model.Pokemon;
-import teampoke.pokeapi.PokeApi;
+import teampoke.model.Puntuacion;
 
 public class Test01 {
 
@@ -26,7 +23,14 @@ public class Test01 {
 		// 	System.out.println(string);
 		// }
 
-		
+//		Puntuacion po = new Puntuacion();
+//		
+//		System.out.println(po);
+//		System.out.println(po.sumarPuntos(1));
+//		po.setPuntuacion(40);
+//		System.out.println(po);
+//		
+//		GlobalApi.addPuntuacion("Cacatua", po.getPuntuacion());
 		List<MarcadorPersonal> leaderboard = GlobalApi.puntuaciones();
 		System.out.println(leaderboard);
 

@@ -57,7 +57,6 @@ public class PlayController implements Initializable {
 	private Pokemon pokemonEnviado = new Pokemon();
 	private ListProperty<HBox> pokemonInfoList = new SimpleListProperty<>(FXCollections.observableArrayList());
 	private ListProperty<String> pokemonList = new SimpleListProperty<>(FXCollections.observableArrayList());
-	private int numeroDePokemonAdivinados;
 	private int numeroIntentos;
 	private Puntuacion punt = new Puntuacion();
 
@@ -270,9 +269,8 @@ public class PlayController implements Initializable {
 		pokemonInfoList.add(0, pokemonEnviadoInfo.getView());
 
 		if(pokemonAdivinado(pokemon, pokemonEnviadoInfo)) {
-			ventanaPokemonAdivinado();
-			
 			punt.setPuntuacion(punt.sumarPuntos(numeroIntentos));
+			ventanaPokemonAdivinado();
 		}
 		
 		numeroIntentos++;
@@ -316,7 +314,6 @@ public class PlayController implements Initializable {
 			pokemonEnviadoInfo.getEvolucionaLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getPreevolucionLabel().getStyleClass().add("bien");
 			pokemonEnviadoInfo.getVidaBaseLabel().getStyleClass().add("bien");
-			numeroDePokemonAdivinados++;
 			pokemonAdivinado = true;
 
 			
