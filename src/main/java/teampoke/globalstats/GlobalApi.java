@@ -14,8 +14,14 @@ public class GlobalApi {
 	private final static String C_ID = "jBVJuJ2uF7RH9dVLv4ldkgHOhrQUrVjKwfu1ZwwE";
 	public static GlobalStats client = new GlobalStats(C_ID, C_SECRET);
 
+	/**
+	 * Añadimos las estadísticas obtenidas por el jugador. Le pasaremos el nombre de usuario (String),
+	 * y la puntuacion obtenida (int)
+	 * 
+	 * @param nameUser
+	 * @param value
+	 */
 	public static void addPuntuacion(String nameUser, Number value) {
-		
 		try {
 			Stats stats = client.createStats(nameUser, new HashMap<String, Object>() {
 				{
@@ -27,6 +33,13 @@ public class GlobalApi {
 		}
 	}
 	
+	/**
+	 * Obtenemos un listado de pares de nombres de usuario con sus respectivas
+	 * puntuaciones apoyandonos en el Objeto "MarcadorPersonal"
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public static List<MarcadorPersonal> puntuaciones() throws Exception{
 		List<Rank> ranking = client.getLeaderboard("score", 10); 
 		List<MarcadorPersonal> rankingFiltrado = new ArrayList<>();

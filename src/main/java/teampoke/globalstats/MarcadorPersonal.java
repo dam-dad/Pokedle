@@ -1,5 +1,10 @@
 package teampoke.globalstats;
 
+/**
+ * Objeto con pares de valores (usuario, puntuacion) que posee un toString para poder
+ * visualizar los marcadores de manera correcta y sencilla
+ *
+ */
 public class MarcadorPersonal {
 
 	private String name;
