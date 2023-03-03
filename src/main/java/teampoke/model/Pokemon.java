@@ -33,7 +33,6 @@ public class Pokemon {
 	public final StringProperty nombrePokemonProperty() {
 		return this.nombrePokemon;
 	}
-
 	
 	public final String getNombrePokemon() {
 		return this.nombrePokemonProperty().get();

@@ -78,7 +78,7 @@
 							<bundleJre>true</bundleJre>
 							<jrePath>C:\Users\aname\Documents\jdk-18.0.2.1+1-jre</jrePath>
 							<customizedJre>false</customizedJre>
-							<generateInstaller>false</generateInstaller>
+							<generateInstaller>true</generateInstaller>
 							<platform>windows</platform>
 							<winConfig>
 								<headerType>gui</headerType>
