@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>teamPoke</groupId>
+	<artifactId>Pokedle</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Pokedle</name>
+	<description>Wordle con temática de pokemon</description>
+
+	<properties>
+		<maven.compiler.target>15</maven.compiler.target>
+		<maven.compiler.source>15</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<exec.mainClass>teampoke.main.Main</exec.mainClass>
+	</properties>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>retrofit</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>converter-gson</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>15.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>15.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<version>15.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.controlsfx</groupId>
+			<artifactId>controlsfx</artifactId>
+			<version>8.40.11</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.fvarrui</groupId>
+			<artifactId>globalstats-java-client</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+    <groupId>io.github.fvarrui</groupId>
+    <artifactId>javapackager</artifactId>
+    <version>1.7.0</version>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <configuration>
+                <!-- mandatory -->
+                <mainClass>${exec.mainClass}</mainClass>
+                <bundleJre>true</bundleJre>
+                <generateInstaller>true</generateInstaller>
+                <platform>windows</platform>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+		</plugins>
+	</build>
+
+
+</project>

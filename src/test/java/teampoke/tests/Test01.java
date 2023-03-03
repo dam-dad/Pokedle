@@ -2,7 +2,6 @@ package teampoke.tests;
 
 import java.util.ArrayList;
 
-import teampoke.globalstats.GlobalApi;
 import teampoke.model.Pokemon;
 import teampoke.pokeapi.PokeApi;
 

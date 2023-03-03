@@ -1,0 +1,16 @@
+@font-face {
+	src: url('../font/PressStart.ttf'),
+}
+
+#start-label{
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-text-fill: black;
+}
+
+.button{
+	-fx-background-color: transparent;
+}
+
+.button:hover{
+	-fx-background-color: #F5F085;
+}

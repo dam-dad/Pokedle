@@ -1,0 +1,32 @@
+@font-face {
+	src: url('../font/PressStart.ttf'),
+}
+
+.label{
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-text-fill: white;
+	-fx-font-size: 6pt;
+	-fx-border-color: #f0c000;
+	-fx-border-width: 5;
+}
+
+.bien{
+	-fx-background-color: #568d39;
+}
+
+.mal{
+	-fx-background-color: #d54424;
+}
+
+.mal-abajo{
+	-fx-background-color: #d54424;
+	-fx-background-image: url("../images/flecha_abajo.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+}
+.mal-arriba{
+	-fx-background-color: #d54424;
+	-fx-background-image: url("../images/flecha_arriba.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+}

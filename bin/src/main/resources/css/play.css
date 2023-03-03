@@ -1,0 +1,60 @@
+@font-face {
+	src: url('../font/PressStart.ttf'),
+}
+
+#labels-panel{
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-text-fill: black;
+	-fx-font-size: 6pt;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+}
+.list-view{
+	-fx-background-color: transparent;
+}
+
+.text-field{
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-shape: "M 60 200 Q 80 180 100 200 Q 120 180 140 200 Q 160 180 180 
+	200 Q 200 180 220 200 Q 240 180 260 200 Q 280 180 300 200 Q 320 180 340 
+	200 Q 360 180 380 200 Q 400 180 420 200 Q 440 180 460 200 Q 480 180 500 
+	200 Q 520 180 540 200 Q 560 180 580 200 Q 600 180 620 200 Q 640 180 660 
+	200 Q 680 180 700 200 Q 720 180 740 200 Q 760 180 780 200 Q 800 180 820 
+	200 Q 840 180 860 200 Q 880 180 900 200 Q 920 180 940 200 Q 960 220 940 
+	240 Q 960 260 940 280 Q 960 300 940 320 Q 960 340 940 360 Q 920 380 900 
+	360 Q 880 380 860 360 Q 840 380 820 360 Q 800 380 780 360 Q 760 380 740 
+	360 Q 720 380 700 360 Q 680 380 660 360 Q 640 380 620 360 Q 600 380 580 
+	360 Q 560 380 540 360 Q 520 380 500 360 Q 480 380 460 360 Q 440 380 420 
+	360 Q 400 380 380 360 Q 360 380 340 360 Q 320 380 300 360 Q 280 380 260 
+	360 Q 240 380 220 360 Q 200 380 180 360 Q 160 380 140 360 Q 120 380 100 
+	360 Q 80 380 60 360 Q 40 340 60 320 Q 40 300 60 280 Q 40 260 60 240 Q 40 
+	220 60 200 "; 
+	-fx-font-size: 6pt;
+	-fx-padding: 20px;
+	-fx-background-position: center center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-image: url("../images/text_back.png");
+	
+	}
+
+#send-pokemon-button{
+	-fx-background-image: url("../images/arrow_45px.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+	-fx-background-color: transparent;
+}
+
+#send-pokemon-button:focused {
+    -fx-background-image: url("../images/arrow_focused_45px.png");
+}
+
+.auto-complete-popup > .list-view {
+	-fx-font-family: 'Press Start 2P', cursive;
+	-fx-font-size: 6pt;
+	-fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-selection-bar-non-focused: #bef2ff;
+}
