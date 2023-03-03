@@ -28,7 +28,8 @@ public class PokeApi {
 
 		ConnectionPool pool = new ConnectionPool(1, 5, TimeUnit.SECONDS);
 
-		OkHttpClient client = new OkHttpClient.Builder().connectionPool(pool).build();
+		OkHttpClient client = new OkHttpClient.Builder()
+				.connectionPool(pool).build();
 
 		Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl("https://pokeapi.co/api/v2/")
 				.addConverterFactory(GsonConverterFactory.create()).build();

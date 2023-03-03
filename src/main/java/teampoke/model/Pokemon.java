@@ -12,6 +12,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
+/**
+ * Clase Pokemon, contiene la información necesaria para generar un Pokémon
+ *
+ */
+
 public class Pokemon {
 	
 	private ObjectProperty<Image> imagenPokemon = new SimpleObjectProperty<>();
@@ -24,16 +29,10 @@ public class Pokemon {
 	private BooleanProperty evoPokemon = new SimpleBooleanProperty();
 	private BooleanProperty preevoPokemon = new SimpleBooleanProperty();
 	private IntegerProperty vidaBasePokemon = new SimpleIntegerProperty();
-	
 
 	public final StringProperty nombrePokemonProperty() {
 		return this.nombrePokemon;
 	}
-		
-	public Pokemon() {
-		// TODO Auto-generated constructor stub
-	}
-
 	
 	public final String getNombrePokemon() {
 		return this.nombrePokemonProperty().get();

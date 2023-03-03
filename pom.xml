@@ -63,7 +63,6 @@
 	<build>
 		<plugins>
 			<plugin>
-
 				<groupId>io.github.fvarrui</groupId>
 				<artifactId>javapackager</artifactId>
 				<version>1.7.0</version>
@@ -77,11 +76,13 @@
 							<!-- mandatory -->
 							<mainClass>${exec.mainClass}</mainClass>
 							<bundleJre>true</bundleJre>
+							<jrePath>C:\Users\aname\Documents\jdk-18.0.2.1+1-jre</jrePath>
+							<customizedJre>false</customizedJre>
 							<generateInstaller>true</generateInstaller>
 							<platform>windows</platform>
 							<winConfig>
-								<headerType>console</headerType>
-								<icoFile>geek.ico</icoFile>
+								<headerType>gui</headerType>
+								<generateMsi>false</generateMsi>
 							</winConfig>
 						</configuration>
 					</execution>
