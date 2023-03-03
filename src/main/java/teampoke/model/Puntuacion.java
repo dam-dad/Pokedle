@@ -4,6 +4,11 @@ public class Puntuacion {
 
 	private int puntuacion;
 
+	/**
+	 * Obtienes la puntuacion que lleva hasta ese momento
+	 * 
+	 * @return puntuacion
+	 */
 	public int getPuntuacion() {
 		return puntuacion;
 	}
