@@ -8,7 +8,7 @@ package teampoke.globalstats;
 public class MarcadorPersonal {
 
 	private String name;
-	private int value;
+	private Integer value;
 	
 	public String getName() {
 		return name;
